@@ -22,51 +22,51 @@ class _LoginScreenState extends State<LoginScreen> {
   String _error = '';
 
   @override
-  void dispose() {
-    super.dispose();
-    emailController.dispose();
-    passwordController.dispose();
-  }
+  // void dispose() {
+  //   super.dispose();
+  //   emailController.dispose();
+  //   passwordController.dispose();
+  // }
 
-  void loginInUser() async {
-    setState(() {
-      _isLoading = true;
-    });
+  // void loginInUser() async {
+  //   setState(() {
+  //     _isLoading = true;
+  //   });
 
-    String res = await AuthMethod().loginUser(
-      email: emailController.text,
-      password: passwordController.text,
-    );
+  //   String res = await AuthMethod().loginUser(
+  //     email: emailController.text,
+  //     password: passwordController.text,
+  //   );
 
-    if (res == 'Success') {
-      setState(() {
-        _isLoading = false;
-      });
+  //   if (res == 'Success') {
+  //     setState(() {
+  //       _isLoading = false;
+  //     });
 
-      snackBar(res);
-      navgateToHome();
-    } else {
-      setState(() {
-        _isLoading = false;
-      });
-      snackBar(res);
+  //     snackBar(res);
+  //     navgateToHome();
+  //   } else {
+  //     setState(() {
+  //       _isLoading = false;
+  //     });
+  //     snackBar(res);
 
-      setState(() {
-        _error = res;
-      });
-    }
-  }
+  //     setState(() {
+  //       _error = res;
+  //     });
+  //   }
+  // }
 
-  void snackBar(res) {
-    if (res == 'Success') {
-      showSnackBar(
-        'Successfully Login',
-        context,
-      );
-    } else {
-      showSnackBar(res, context);
-    }
-  }
+  // void snackBar(res) {
+  //   if (res == 'Success') {
+  //     showSnackBar(
+  //       'Successfully Login',
+  //       context,
+  //     );
+  //   } else {
+  //     showSnackBar(res, context);
+  //   }
+  // }
 
   void navgateToHome() {
     Navigator.of(context).pushReplacement(
@@ -175,7 +175,8 @@ class _LoginScreenState extends State<LoginScreen> {
               // button login
               ElevatedButton(
                 onPressed: () {
-                  loginInUser();
+                  // loginInUser();
+                  navgateToHome();
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 48),
