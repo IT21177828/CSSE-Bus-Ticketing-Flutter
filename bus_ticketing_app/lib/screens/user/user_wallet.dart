@@ -14,16 +14,7 @@ class _UserWalletState extends State<UserWallet> {
       appBar: AppBar(
         title: const Text('User Wallet'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text(
-              'User Wallet',
-            ),
-          ],
-        ),
-      ),
+      body: Text('User Wallet'),
     );
   }
 }
