@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bus_ticketing_app/widgets/qr_image.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+
 
 
 class QRScreen extends StatefulWidget {
@@ -19,30 +21,25 @@ class GenerateQRCodeState extends State<QRScreen>{
         title: const Text('Flutter + QR code'),
         centerTitle: true,
       ),
-      body: Column(
+
+
+       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            margin: const EdgeInsets.all(20),
-            child: TextField(
-              controller: controller,
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(), labelText: 'Enter your URL'),
+          Center(
+            child: QrImageView(
+              data: "controller.text",
+              version: QrVersions.auto,
+              size: 280.0,
+              embeddedImageStyle: const QrEmbeddedImageStyle(
+                size:  Size(
+                  100,
+                  100,
+                ),
+              ),
             ),
-          ),
-          //This button when pressed navigates to QR code generation
-          ElevatedButton(
-              onPressed: () async {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: ((context) {
-                      return QRImage(controller);
-                    }),
-                  ),
-                );
-              },
-              child: const Text('GENERATE QR CODE')),
+          )
         ],
       ),
     );
