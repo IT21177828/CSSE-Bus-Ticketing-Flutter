@@ -2,16 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:bus_ticketing_app/utils/colors.dart';
-import 'package:bus_ticketing_app/utils/global_variable.dart';
+import 'package:bus_ticketing_app/utils/con_global_variable.dart';
 
-class MobileScreenLayout extends StatefulWidget {
-  const MobileScreenLayout({super.key});
+class ConMobileScreenLayout extends StatefulWidget {
+  const ConMobileScreenLayout({super.key});
 
   @override
-  State<MobileScreenLayout> createState() => _MobileScreenLayoutState();
+  State<ConMobileScreenLayout> createState() => _MobileScreenLayoutState();
 }
 
-class _MobileScreenLayoutState extends State<MobileScreenLayout> {
+class _MobileScreenLayoutState extends State<ConMobileScreenLayout> {
   int _page = 0;
 
   late PageController pageController;
@@ -61,7 +61,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                   BlendMode.srcIn,
                 ),
                 child: SvgPicture.asset(
-                  'assets/qrcode.svg',
+                  'assets/details.svg',
                 ),
               ),
               label: '',
@@ -87,7 +87,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                   BlendMode.srcIn,
                 ),
                 child: SvgPicture.asset(
-                  'assets/topup.svg',
+                  'assets/qrscanner.svg',
                 ),
               ),
               label: '',
@@ -100,7 +100,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                   BlendMode.srcIn,
                 ),
                 child: SvgPicture.asset(
-                  'assets/history.svg',
+                  'assets/bell.svg',
                 ),
               ),
               label: '',

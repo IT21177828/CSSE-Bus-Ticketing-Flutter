@@ -2,29 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class QRImage extends StatelessWidget {
-  const QRImage(this.controller, {super.key});
+  const QRImage({super.key, required this.controller});
 
-  final TextEditingController controller;
+  final String controller;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter + QR code'),
+        title: const Text('My QR Code'),
         centerTitle: true,
+        backgroundColor: Color.fromARGB(255, 0, 149, 255),
       ),
-
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          const SizedBox(
+            height: 40,
+          ),
+          const Text(
+            'Scan this QR code to pay',
+            style: TextStyle(fontSize: 20),
+          ),
+          const SizedBox(
+            height: 150,
+          ),
           Center(
             child: QrImageView(
-              data: controller.text,
+              data: controller,
               version: QrVersions.auto,
               size: 280.0,
               embeddedImageStyle: const QrEmbeddedImageStyle(
-                size:  Size(
+                size: Size(
                   100,
                   100,
                 ),
