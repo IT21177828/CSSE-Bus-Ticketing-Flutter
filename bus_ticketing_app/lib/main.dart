@@ -1,4 +1,6 @@
+import 'package:bus_ticketing_app/responsive/responsive.dart';
 import 'package:bus_ticketing_app/screens/login_screen.dart';
+import 'package:bus_ticketing_app/screens/user/user_wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:bus_ticketing_app/screens/qr_screen.dart';
 import 'package:bus_ticketing_app/screens/qr_reader_screen.dart';
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme:
           ThemeData(primaryColor: Colors.black54, primarySwatch: Colors.brown),
-      home: const LoginScreen(),
+      home: LoginScreen(),
     );
   }
 }
