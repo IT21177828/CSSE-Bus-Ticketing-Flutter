@@ -67,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
         isLoading = false;
       });
 
-      if (!checkUserTypes) {
+      if (checkUserTypes) {
         // ignore: use_build_context_synchronously
         Navigator.push(context,
           MaterialPageRoute(builder: (context) => BarcodeScannerApp() )
@@ -75,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
       } else {
         // ignore: use_build_context_synchronously
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => QRScreen(user_id: newjsonResponse)));
+            MaterialPageRoute(builder: (context) => QRScreen(user_id: userId)));
         snackBar('Successfully logged in');
       }
     } else {

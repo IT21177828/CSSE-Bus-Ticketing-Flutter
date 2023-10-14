@@ -12,7 +12,7 @@ const webScreenSize = 600;
 final logger = Logger();
 
 const homeScreenItems = [
-  QRScreen(),
+  // QRScreen(),
   UserWallet(),
   UserTopup(),
   UserTravelHistory(),
