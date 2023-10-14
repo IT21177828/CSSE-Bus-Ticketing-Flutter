@@ -6,9 +6,6 @@ import 'package:bus_ticketing_app/screens/login_screen.dart';
 class QRScreen extends StatefulWidget {
   // const QRScreen({super.key});
   // ignore: non_constant_identifier_names
-
-
-
   final String user_id;
   QRScreen({required this.user_id});
 
@@ -24,6 +21,8 @@ class GenerateQRCodeState extends State<QRScreen> {
   GenerateQRCodeState(this.user_id);
 
   TextEditingController controller = TextEditingController();
+
+
 
   Widget build(BuildContext context) {
     return Scaffold(
