@@ -54,11 +54,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
     logger.d(newjsonResponse);
 
-    final userId = newjsonResponse['user']['qrCode'];
+    final userQr = newjsonResponse['user']['qrCode'];
     final userType = newjsonResponse['user']['userRole'];
+    final userId  = newjsonResponse['user']['_id'];
+    // logger.e(userId);
 
-    logger.d(userType[0]);
-    final checkUserTypes =userType.contains('conductor');
+
+    // logger.d(userType[0]);
+    final checkUserTypes =userType.contains('user');
 
     if (response.body != "Incorrect password") {
       // Login successful, handle the response here
@@ -67,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
         isLoading = false;
       });
 
-      if (checkUserTypes) {
+      if (!checkUserTypes) {
         // ignore: use_build_context_synchronously
         Navigator.push(context,
           MaterialPageRoute(builder: (context) => BarcodeScannerApp() )
@@ -75,7 +78,8 @@ class _LoginScreenState extends State<LoginScreen> {
       } else {
         // ignore: use_build_context_synchronously
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => QRScreen(user_id: userId)));
+            MaterialPageRoute(builder: (context) => QRScreen(user_Qr: userId)));
+
         snackBar('Successfully logged in');
       }
     } else {
@@ -107,8 +111,8 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void setUserID(userId) {
-    final id = userId;
+  void setUserQr(userQr) {
+    final id = userQr;
     // ignore: void_checks
     return id;
   }
