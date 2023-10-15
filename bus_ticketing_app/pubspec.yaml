@@ -83,15 +83,6 @@ flutter:
     - assets/feedback.svg
     - assets/message.svg
     - assets/saved.svg
-    - assets/qrcode.svg
-    - assets/profile.svg
-    - assets/wallet.svg
-    - assets/topup.svg
-    - assets/history.svg
-    - assets/qrscanner.svg
-    - assets/bell.svg
-    - assets/details.svg
-    - assets/passenger.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
