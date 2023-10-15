@@ -1,13 +1,13 @@
-import 'dart:convert';
-
+import 'package:bus_ticketing_app/responsive/con_mobile_screen_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:bus_ticketing_app/Widgets/text_field_input.dart';
+import 'package:bus_ticketing_app/resources/auth_method.dart';
+import 'package:bus_ticketing_app/responsive/mobile_screen_layout.dart';
+import 'package:bus_ticketing_app/responsive/responsive.dart';
+import 'package:bus_ticketing_app/responsive/web_screen_layout.dart';
 import 'package:bus_ticketing_app/screens/signup_screen.dart';
 import 'package:bus_ticketing_app/utils/colors.dart';
 import 'package:bus_ticketing_app/utils/utills.dart';
-import 'package:bus_ticketing_app/screens/qr_screen.dart';
-import 'package:bus_ticketing_app/screens/qr_reader_screen.dart';
-import 'package:http/http.dart' as http;
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -16,11 +16,67 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-
-
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  bool _isLoading = false;
+  String _error = '';
+
+
+  
+//   get from thilina's branch
+  @override
+  void dispose() {
+    super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+  }
+
+
+    String res = await AuthMethod().loginUser(
+      email: emailController.text,
+      password: passwordController.text,
+    );
+
+    if (res == 'Success') {
+      setState(() {
+        _isLoading = false;
+      });
+
+      snackBar(res);
+      navgateToHome();
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
+      snackBar(res);
+
+      setState(() {
+        _error = res;
+      });
+    }
+  }
+
+  void snackBar(res) {
+    if (res == 'Success') {
+      showSnackBar(
+        'Successfully Login',
+        context,
+      );
+    } else {
+      showSnackBar(res, context);
+    }
+  }
+
+  void navgateToHome() {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => const ResponsiveLayout(
+          mobileScreenLayout: MobileScreenLayout(),
+          webScreenLayout: WebScreenLayout(),
+        ),
+        
+//         thilan branch
 
 
   bool isLoading = false;
@@ -94,13 +150,9 @@ class _LoginScreenState extends State<LoginScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
+
       ),
     );
-  }
-
-  void navigateToHome() {
-    // Navigate to the home screen
-    // Implement your navigation logic here
   }
 
   void navigateToSignup() {
@@ -117,6 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return id;
   }
 
+        
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -139,11 +192,13 @@ class _LoginScreenState extends State<LoginScreen> {
         bottom: false,
         child: Container(
           decoration: const BoxDecoration(
-              // image: DecorationImage(
-              //   image: AssetImage(''), // Add your image path here
-              //   fit: BoxFit.cover,
-              // ),
+            image: DecorationImage(
+              image: AssetImage(
+                '',
               ),
+              fit: BoxFit.cover,
+            ),
+          ),
           padding: const EdgeInsets.symmetric(horizontal: 32),
           width: double.infinity,
           child: Column(
@@ -155,23 +210,23 @@ class _LoginScreenState extends State<LoginScreen> {
                 backgroundColor: primaryColor,
                 child: CircleAvatar(
                   radius: 74,
-                  // backgroundImage: NetworkImage(
-                  //   // 'https://images.unsplash.com/photo-1681811472561-801b008d75e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60',
-                  // ),
+                  //svg image
+                  backgroundImage: NetworkImage(
+                    'https://images.unsplash.com/photo-1681811472561-801b008d75e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60',
+                  ),
                 ),
               ),
               const SizedBox(
                 height: 32,
               ),
-              const Text(
-                'Sign In to Continue',
-                style: TextStyle(
-                  color: postUserNameColor,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              const Text('Sign In to Continue',
+                  style: TextStyle(
+                    color: postUserNameColor,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  )),
               const SizedBox(height: 44),
+              //text feild email
               TextFieldInput(
                 textEditingController: emailController,
                 hintText: 'Email',
@@ -180,6 +235,7 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(
                 height: 24,
               ),
+              //text feild password
               TextFieldInput(
                 textEditingController: passwordController,
                 hintText: 'Password',
@@ -190,7 +246,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 24,
               ),
               Text(
-                error,
+                _error,
                 style: const TextStyle(
                   color: Colors.red,
                   fontSize: 16,
@@ -199,8 +255,12 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(
                 height: 34,
               ),
+              // button login
               ElevatedButton(
-                onPressed: loginInUser,
+                onPressed: () {
+                  // loginInUser();
+                  navgateToHome();
+                },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 48),
                   foregroundColor: primaryColor,
@@ -209,7 +269,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     borderRadius: BorderRadius.circular(25),
                   ),
                 ),
-                child: isLoading
+                child: _isLoading
                     ? const Center(
                         child: CircularProgressIndicator(
                           color: primaryColor,
@@ -226,6 +286,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
               ),
               Flexible(flex: 2, child: Container()),
+              //go to signup
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -233,12 +294,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,
                     ),
-                    child: const Text(
-                      "Don't have an account?",
-                      style: TextStyle(
-                        color: hintColor,
-                      ),
-                    ),
+                    child: const Text("Don't have an account?",
+                        style: TextStyle(
+                          color: hintColor,
+                        )),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -261,7 +320,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(
                 height: 64,
-              ),
+              )
             ],
           ),
         ),

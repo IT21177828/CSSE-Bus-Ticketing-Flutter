@@ -1,3 +1,4 @@
+import 'package:bus_ticketing_app/screens/user/travel_history_listitem.dart';
 import 'package:flutter/material.dart';
 
 class UserTravelHistory extends StatefulWidget {
@@ -15,7 +16,8 @@ class _UserTravelState extends State<UserTravelHistory> {
           title: Container(
               alignment: Alignment.center,
               child: const Text('My Travel History')),
-          backgroundColor: const Color.fromARGB(255, 51, 170, 255),
+          backgroundColor: const Color.fromARGB(255, 0, 149, 255),
+          elevation: 1,
         ),
         body: Column(
           children: [
@@ -25,8 +27,14 @@ class _UserTravelState extends State<UserTravelHistory> {
             Container(
               child: const Text(
                 'Travel History',
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
+            ),
+            Divider(
+              height: 20,
+              thickness: 2,
+              indent: 20,
+              endIndent: 20,
             ),
             Expanded(
               child: SingleChildScrollView(
@@ -35,29 +43,23 @@ class _UserTravelState extends State<UserTravelHistory> {
                     // Travel history section
                     Container(
                       padding: const EdgeInsets.all(20),
-                      child: const Column(
+                      child: Column(
                         children: <Widget>[
-                          // Add your travel history widgets here
-                          // For example, a list of travel history items
-                          ListTile(title: Text('Trip 1')),
-                          ListTile(title: Text('Trip 2')),
-                          ListTile(title: Text('Trip 3')),
-                          ListTile(title: Text('Trip 1')),
-                          ListTile(title: Text('Trip 2')),
-                          ListTile(title: Text('Trip 3')),
-                          ListTile(title: Text('Trip 1')),
-                          ListTile(title: Text('Trip 2')),
-                          ListTile(title: Text('Trip 3')),
-                          ListTile(title: Text('Trip 1')),
-                          ListTile(title: Text('Trip 2')),
-                          ListTile(title: Text('Trip 3')),
-                          ListTile(title: Text('Trip 1')),
-                          ListTile(title: Text('Trip 2')),
-                          ListTile(title: Text('Trip 3')),
-                          ListTile(title: Text('Trip 1')),
-                          ListTile(title: Text('Trip 2')),
-                          ListTile(title: Text('Trip 3')),
-                          // Add more ListTile widgets for each trip
+                          TravelHistoryListItem(
+                              title: "dgd",
+                              amount: "amount",
+                              entrance: "entrance",
+                              exit: "exit"),
+                          TravelHistoryListItem(
+                              title: "dgd",
+                              amount: "amount",
+                              entrance: "entrance",
+                              exit: "exit"),
+                          TravelHistoryListItem(
+                              title: "dgd",
+                              amount: "amount",
+                              entrance: "entrance",
+                              exit: "exit")
                         ],
                       ),
                     ),
