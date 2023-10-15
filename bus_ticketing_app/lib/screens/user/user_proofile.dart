@@ -12,9 +12,24 @@ class _UserWalletState extends State<UserProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Container(
-              alignment: Alignment.center, child: const Text('My Profile')),
-          backgroundColor: const Color.fromARGB(255, 51, 170, 255),
+          backgroundColor: Color.fromARGB(255, 0, 149, 255),
+          elevation: 1,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment
+                .spaceBetween, // Place title and icon at each end
+            children: [
+              Text('My Profile'), // Title on the left/start
+              IconButton(
+                icon: Icon(Icons.exit_to_app), // Icon on the right/end
+                onPressed: () {
+                  // Define the sign-out action here
+                },
+              ),
+            ],
+          ),
+          actions: [
+            // You can add more actions here if needed
+          ],
         ),
         body: Center(
           child: Padding(
