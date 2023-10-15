@@ -15,6 +15,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
   int _page = 0;
 
   late PageController pageController;
+
   @override
   void initState() {
     super.initState();
@@ -61,10 +62,10 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                   BlendMode.srcIn,
                 ),
                 child: SvgPicture.asset(
-                  'assets/qrcode.svg',
+                  'assets/home.svg',
                 ),
               ),
-              label: '',
+              label: 'Home',
               backgroundColor: primaryColor,
             ),
             BottomNavigationBarItem(
@@ -74,10 +75,10 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                   BlendMode.srcIn,
                 ),
                 child: SvgPicture.asset(
-                  'assets/wallet.svg',
+                  'assets/search.svg',
                 ),
               ),
-              label: '',
+              label: 'Search',
               backgroundColor: primaryColor,
             ),
             BottomNavigationBarItem(
@@ -87,7 +88,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                   BlendMode.srcIn,
                 ),
                 child: SvgPicture.asset(
-                  'assets/topup.svg',
+                  'assets/add.svg',
                 ),
               ),
               label: '',
@@ -100,10 +101,10 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                   BlendMode.srcIn,
                 ),
                 child: SvgPicture.asset(
-                  'assets/history.svg',
+                  'assets/chat.svg',
                 ),
               ),
-              label: '',
+              label: 'Chat',
               backgroundColor: primaryColor,
             ),
             BottomNavigationBarItem(
@@ -113,10 +114,10 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                   BlendMode.srcIn,
                 ),
                 child: SvgPicture.asset(
-                  'assets/profile.svg',
+                  'assets/menu.svg',
                 ),
               ),
-              label: '',
+              label: 'Menu',
               backgroundColor: primaryColor,
             ),
           ],

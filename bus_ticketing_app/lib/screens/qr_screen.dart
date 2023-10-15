@@ -20,6 +20,7 @@ class QRScreen extends StatefulWidget {
   // ignore: no_logic_in_create_state
   GenerateQRCodeState createState() => GenerateQRCodeState(user_Qr);
 
+  
 }
 
 
@@ -81,12 +82,11 @@ class GenerateQRCodeState extends State<QRScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My QR Code'),
+        title: const Text('Flutter + QR code'),
         centerTitle: true,
-        elevation: 1,
-        backgroundColor: const Color.fromARGB(255, 0, 149, 255),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Center(
@@ -101,20 +101,7 @@ class GenerateQRCodeState extends State<QRScreen> {
                 ),
               ),
             ),
-          ),
-          //This button when pressed navigates to QR code generation
-          ElevatedButton(
-              onPressed: () async {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: ((context) {
-                //       return QRImage(controller);
-                //     }),
-                //   ),
-                // );
-              },
-              child: const Text('GENERATE QR CODE')),
+          )
         ],
       ),
     );

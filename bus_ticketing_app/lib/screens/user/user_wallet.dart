@@ -1,5 +1,3 @@
-import 'package:bus_ticketing_app/screens/user/travel_history_listitem.dart';
-import 'package:bus_ticketing_app/screens/user/user_topup.dart';
 import 'package:flutter/material.dart';
 
 class UserWallet extends StatefulWidget {
@@ -22,7 +20,7 @@ class _UserWalletState extends State<UserWallet> {
         //         ),
         //   ),
         // ),
-        backgroundColor: const Color.fromARGB(255, 0, 149, 255),
+        backgroundColor: const Color.fromARGB(255, 51, 170, 255),
         title: Container(
             alignment: Alignment.center, child: const Text('My Wallet')),
 
@@ -45,12 +43,8 @@ class _UserWalletState extends State<UserWallet> {
               ],
             ),
           ),
-          const SizedBox(
-            height: 20,
-          ),
           Container(
-            color: Color.fromARGB(255, 187, 215, 255),
-            padding: const EdgeInsets.symmetric(vertical: 20),
+            padding: const EdgeInsets.only(top: 20),
             child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -70,10 +64,7 @@ class _UserWalletState extends State<UserWallet> {
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => UserTopup()),
-              );
+              // Add your button click logic here
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color.fromARGB(255, 51, 170, 255),
@@ -90,7 +81,7 @@ class _UserWalletState extends State<UserWallet> {
           Container(
             alignment: Alignment.centerLeft,
             margin: const EdgeInsets.only(left: 30),
-            child: const Text(
+            child: Text(
               'Travel History',
               style: TextStyle(
                 fontSize: 20,
@@ -98,13 +89,7 @@ class _UserWalletState extends State<UserWallet> {
               ),
             ),
           ),
-          Divider(
-            height: 20,
-            thickness: 2,
-            indent: 20,
-            endIndent: 20,
-          ),
-          const SizedBox(
+          SizedBox(
             height: 10,
           ),
           Expanded(
@@ -113,27 +98,21 @@ class _UserWalletState extends State<UserWallet> {
                 children: <Widget>[
                   // Travel history section
                   Container(
-                    padding: const EdgeInsets.all(20),
+                    padding: EdgeInsets.all(20),
                     child: Column(
                       children: <Widget>[
-                        TravelHistoryListItem(
-                          title: "Trip 1",
-                          amount: "100.00",
-                          entrance: "Kandy",
-                          exit: "Colombo",
-                        ),
-                        TravelHistoryListItem(
-                          title: "Trip 1",
-                          amount: "100.00",
-                          entrance: "Kandy",
-                          exit: "Colombo",
-                        ),
-                        TravelHistoryListItem(
-                          title: "Trip 1",
-                          amount: "100.00",
-                          entrance: "Kandy",
-                          exit: "Colombo",
-                        ),
+                        // Add your travel history widgets here
+                        // For example, a list of travel history items
+                        ListTile(title: Text('Trip 1')),
+                        ListTile(title: Text('Trip 2')),
+                        ListTile(title: Text('Trip 3')),
+                        ListTile(title: Text('Trip 1')),
+                        ListTile(title: Text('Trip 2')),
+                        ListTile(title: Text('Trip 3')),
+                        ListTile(title: Text('Trip 1')),
+                        ListTile(title: Text('Trip 2')),
+                        ListTile(title: Text('Trip 3')),
+                        // Add more ListTile widgets for each trip
                       ],
                     ),
                   ),
