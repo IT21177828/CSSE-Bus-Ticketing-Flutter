@@ -13,7 +13,7 @@ const webScreenSize = 600;
 final logger = Logger();
 
 const homeScreenItems = [
-  QRImage(controller: 'thilina'),
+//   QRImage(controller: 'thilina'),
   UserWallet(),
   UserTopup(),
   UserTravelHistory(),

@@ -22,52 +22,51 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isLoading = false;
   String _error = '';
 
+
+  
+//   get from thilina's branch
   @override
-  // void dispose() {
-  //   super.dispose();
-  //   emailController.dispose();
-  //   passwordController.dispose();
-  // }
+  void dispose() {
+    super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+  }
 
-  // void loginInUser() async {
-  //   setState(() {
-  //     _isLoading = true;
-  //   });
 
-  //   String res = await AuthMethod().loginUser(
-  //     email: emailController.text,
-  //     password: passwordController.text,
-  //   );
+    String res = await AuthMethod().loginUser(
+      email: emailController.text,
+      password: passwordController.text,
+    );
 
-  //   if (res == 'Success') {
-  //     setState(() {
-  //       _isLoading = false;
-  //     });
+    if (res == 'Success') {
+      setState(() {
+        _isLoading = false;
+      });
 
-  //     snackBar(res);
-  //     navgateToHome();
-  //   } else {
-  //     setState(() {
-  //       _isLoading = false;
-  //     });
-  //     snackBar(res);
+      snackBar(res);
+      navgateToHome();
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
+      snackBar(res);
 
-  //     setState(() {
-  //       _error = res;
-  //     });
-  //   }
-  // }
+      setState(() {
+        _error = res;
+      });
+    }
+  }
 
-  // void snackBar(res) {
-  //   if (res == 'Success') {
-  //     showSnackBar(
-  //       'Successfully Login',
-  //       context,
-  //     );
-  //   } else {
-  //     showSnackBar(res, context);
-  //   }
-  // }
+  void snackBar(res) {
+    if (res == 'Success') {
+      showSnackBar(
+        'Successfully Login',
+        context,
+      );
+    } else {
+      showSnackBar(res, context);
+    }
+  }
 
   void navgateToHome() {
     Navigator.of(context).pushReplacement(
@@ -76,6 +75,82 @@ class _LoginScreenState extends State<LoginScreen> {
           mobileScreenLayout: MobileScreenLayout(),
           webScreenLayout: WebScreenLayout(),
         ),
+        
+//         thilan branch
+
+
+  bool isLoading = false;
+  String error = '';
+
+//login user
+  void loginInUser() async {
+    setState(() {
+      isLoading = true;
+      error = '';
+    });
+
+    final String email = emailController.text;
+    final String password = passwordController.text;
+
+    final Map<String, String> headers = {
+      'Content-Type': 'application/json', // Adjust the content type as needed
+    };
+
+    // Make an HTTP POST request to the login API
+    final response = await http.post(
+      Uri.parse('http://192.168.8.100:5050/users/login'),
+      headers: headers,
+      body: jsonEncode({
+        'email': email,
+        'passwordHash': password,
+      }),
+    );
+
+    final newjsonResponse = json.decode(response.body);
+
+    logger.d(newjsonResponse);
+
+    final userQr = newjsonResponse['user']['qrCode'];
+    final userType = newjsonResponse['user']['userRole'];
+    final userId  = newjsonResponse['user']['_id'];
+    // logger.e(userId);
+
+
+    // logger.d(userType[0]);
+    final checkUserTypes =userType.contains('user');
+
+    if (response.body != "Incorrect password") {
+      // Login successful, handle the response here
+      final String result = response.body; // Assuming the API returns a result
+      setState(() {
+        isLoading = false;
+      });
+
+      if (!checkUserTypes) {
+        // ignore: use_build_context_synchronously
+        Navigator.push(context,
+          MaterialPageRoute(builder: (context) => BarcodeScannerApp() )
+        );
+      } else {
+        // ignore: use_build_context_synchronously
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => QRScreen(user_Qr: userId)));
+
+        snackBar('Successfully logged in');
+      }
+    } else {
+      snackBar('Login failed. Please check your credentials.');
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  void snackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+
       ),
     );
   }
@@ -88,6 +163,13 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  void setUserQr(userQr) {
+    final id = userQr;
+    // ignore: void_checks
+    return id;
+  }
+
+        
   @override
   Widget build(BuildContext context) {
     return Scaffold(
