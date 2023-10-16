@@ -1,15 +1,43 @@
+import 'package:bus_ticketing_app/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
-class UserWallet extends StatefulWidget {
-  const UserWallet({Key? key}) : super(key: key);
 
-  @override
-  State<UserWallet> createState() => _UserWalletState();
+class UserWallet extends StatefulWidget {
+  final String user_Qr;
+  final UserType newUser;
+
+  
+
+  // final String user_Id;
+  const UserWallet({required this.user_Qr, required this.newUser});
+
+   @override
+  // ignore: no_logic_in_create_state
+  _UserWalletState createState() => _UserWalletState(user_Qr, newUser);
+
 }
 
 class _UserWalletState extends State<UserWallet> {
+    late final String user_Qr;
+
+ late  UserType NewUser;
+
+  _UserWalletState(this.user_Qr, this.NewUser);
+
+    @override
+  void initState() {
+    NewUser = widget.newUser;
+
+    String balance = NewUser.accountBalance.toString();
+
+    super.initState();
+
+  }
+
   @override
   Widget build(BuildContext context) {
+    int balance = NewUser.accountBalance;
+
     return Scaffold(
       appBar: AppBar(
         // leading: Container(
@@ -45,15 +73,15 @@ class _UserWalletState extends State<UserWallet> {
           ),
           Container(
             padding: const EdgeInsets.only(top: 20),
-            child: const Row(
+            child:  Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'LKR',
                   style: TextStyle(fontSize: 30),
                 ),
                 Text(
-                  ' 00.00',
+                  "$balance" ".00",
                   style: TextStyle(fontSize: 50),
                 ),
               ],

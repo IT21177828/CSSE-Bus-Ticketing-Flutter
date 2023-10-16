@@ -7,35 +7,33 @@ import 'package:bus_ticketing_app/screens/login_screen.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-
-
 class QRScreen extends StatefulWidget {
-  // const QRScreen({super.key});
-  // ignore: non_constant_identifier_names
   final String user_Qr;
+  final UserType newUser;
+
   // final String user_Id;
-  QRScreen({required this.user_Qr});
+  const QRScreen({required this.user_Qr, required this.newUser});
 
   @override
   // ignore: no_logic_in_create_state
-  GenerateQRCodeState createState() => GenerateQRCodeState(user_Qr);
-
-  
+  GenerateQRCodeState createState() => GenerateQRCodeState(user_Qr, newUser);
 }
 
-
-
 class GenerateQRCodeState extends State<QRScreen> {
-  // ignore: non_constant_identifier_names
   final String user_Qr;
-  // final String user_Id;
 
-  GenerateQRCodeState(this.user_Qr);
+  UserType NewUser;
+
+  GenerateQRCodeState(this.user_Qr, this.NewUser);
 
   TextEditingController controller = TextEditingController();
 
   @override
   void initState() {
+    NewUser = widget.newUser;
+
+    String balance = NewUser.accountBalance.toString();
+
     super.initState();
     // print("User ID: $user_Qr");
     fetchData(); // Call a separate method for fetching data
@@ -43,15 +41,13 @@ class GenerateQRCodeState extends State<QRScreen> {
 
   Future<void> fetchData() async {
     final String user = user_Qr;
-    print("aaaaaa");
-    print("User ID: $user_Qr");
-    print("aaaaaa");
 
     final Map<String, String> headers = {
       'Content-Type': 'application/json', // Adjust the content type as needed
     };
 
     print("User ID: $user_Qr");
+    logger.e(NewUser.emails);
 
     final response = await http.post(
       Uri.parse('http://192.168.8.100:5050/users/userData/'),
@@ -61,29 +57,16 @@ class GenerateQRCodeState extends State<QRScreen> {
       }),
     );
     final decodeData = json.decode(response.body);
-
-    final userQr = decodeData['qrCode'];
-    final userAccoutBalance = decodeData['accountBalance'];
-    final userFName = decodeData['firstName'];
-    final userLName = decodeData['lastName'];
-    final userEmail = decodeData['email'];
-    final userGender = decodeData['gender'];
-    final userAddress = decodeData['address'];
-
-    logger.e(userQr);
-
   }
- 
-  
-
-
-
 
   Widget build(BuildContext context) {
+    int balance = NewUser.accountBalance;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter + QR code'),
-        centerTitle: true,
+        backgroundColor: const Color.fromARGB(255, 51, 170, 255),
+        title: Container(
+            alignment: Alignment.center, child: const Text('Get Your Ticket')),
+        elevation: 1,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -101,7 +84,44 @@ class GenerateQRCodeState extends State<QRScreen> {
                 ),
               ),
             ),
-          )
+          ),
+          const SizedBox(
+            height: 40.0,
+          ),
+          Text(
+            "Balance: $balance",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+
+          const SizedBox(
+            height: 40.0,
+          ),
+          //           ElevatedButton(
+          //   onPressed: loginInUser,
+          //   style: ElevatedButton.styleFrom(
+          //     // minimumSize: const Size(double.infinity, 48),
+          //     foregroundColor: primaryColor,
+          //     backgroundColor: signInBtn,
+          //     shape: RoundedRectangleBorder(
+          //       borderRadius: BorderRadius.circular(25),
+          //     ),
+          //   ),
+          //   child: isLoading
+          //       ? const Center(
+          //           child: CircularProgressIndicator(
+          //             color: primaryColor,
+          //           ),
+          //         )
+          //       : const Text(
+          //           'Sign In',
+          //           style: TextStyle(
+          //             fontWeight: FontWeight.bold,
+          //             color: buttonText,
+          //             fontSize: 20,
+          //             letterSpacing: 1.5,
+          //           ),
+          //         ),
+          // ),
         ],
       ),
     );

@@ -1,5 +1,8 @@
 import 'dart:convert';
+// import 'dart:ffi';
 
+import 'package:bus_ticketing_app/responsive/responsive.dart';
+import 'package:bus_ticketing_app/responsive/web_screen_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:bus_ticketing_app/Widgets/text_field_input.dart';
 import 'package:bus_ticketing_app/screens/signup_screen.dart';
@@ -8,6 +11,25 @@ import 'package:bus_ticketing_app/utils/utills.dart';
 import 'package:bus_ticketing_app/screens/qr_screen.dart';
 import 'package:bus_ticketing_app/screens/qr_reader_screen.dart';
 import 'package:http/http.dart' as http;
+import 'package:bus_ticketing_app/responsive/mobile_screen_layout.dart';
+
+
+class UserType {
+  final String userID;
+  final String emails;
+  final List userRole;
+  final String qrCode;
+  final int accountBalance;
+  final String firstName;
+  final String lastName;
+  final String gender;
+  final int age;
+  final String address;
+
+
+
+  UserType({required this.userID, required this.emails, required this.userRole, required this.qrCode, required this.accountBalance, required this.firstName, required this.lastName, required this.gender, required this.age, required this.address});
+}
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,7 +37,6 @@ class LoginScreen extends StatefulWidget {
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
-
 
 
 class _LoginScreenState extends State<LoginScreen> {
@@ -28,6 +49,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
 //login user
   void loginInUser() async {
+
+
+
+
+
     setState(() {
       isLoading = true;
       error = '';
@@ -42,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     // Make an HTTP POST request to the login API
     final response = await http.post(
-      Uri.parse('http://192.168.8.100:5050/users/login'),
+      Uri.parse('http://192.168.8.101:5050/users/login'),
       headers: headers,
       body: jsonEncode({
         'email': email,
@@ -50,18 +76,33 @@ class _LoginScreenState extends State<LoginScreen> {
       }),
     );
 
+
+
     final newjsonResponse = json.decode(response.body);
+    logger.e(newjsonResponse);
+    String getUserID = newjsonResponse['user']['_id'];
+    String getEmail =newjsonResponse['user']['email'];
+    List getRole =newjsonResponse['user']['userRole'];
+    logger.e(getEmail);
+
+    String getQr =newjsonResponse['user']['qrCode'];
+    int getAccountBalance =newjsonResponse['user']['accountBalance'];
+    String getFirstName =newjsonResponse['user']['firstName'];
+    String getLastName =newjsonResponse['user']['lastName'];
+    String getGender = newjsonResponse['user']['gender'];
+    int getAge = newjsonResponse['user']['age'];
+    String getAddress = newjsonResponse['user']['address'];
+    logger.e(getAddress);
+
+
+    UserType u = UserType(userID:getUserID, emails:getEmail , userRole: getRole ,qrCode: getQr, accountBalance:getAccountBalance, firstName:getFirstName,lastName:getLastName,gender:getGender,age:getAge,address:getAddress);
+
+
+
 
     logger.d(newjsonResponse);
 
-    final userQr = newjsonResponse['user']['qrCode'];
-    final userType = newjsonResponse['user']['userRole'];
-    final userId  = newjsonResponse['user']['_id'];
-    // logger.e(userId);
-
-
-    // logger.d(userType[0]);
-    final checkUserTypes =userType.contains('user');
+    final checkUserTypes =getRole.contains('conductor');
 
     if (response.body != "Incorrect password") {
       // Login successful, handle the response here
@@ -70,17 +111,27 @@ class _LoginScreenState extends State<LoginScreen> {
         isLoading = false;
       });
 
-      if (!checkUserTypes) {
+      if (checkUserTypes) {
         // ignore: use_build_context_synchronously
         Navigator.push(context,
           MaterialPageRoute(builder: (context) => BarcodeScannerApp() )
         );
       } else {
-        // ignore: use_build_context_synchronously
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => QRScreen(user_Qr: userId)));
 
-        snackBar('Successfully logged in');
+        logger.e("g dgugiuwegfikdcghkdgckducbjkdcdjsacj");
+        // ignore: use_build_context_synchronously
+
+    // Navigate to the home screen
+    // Implement your navigation logic here
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => ResponsiveLayout(
+          mobileScreenLayout: MobileScreenLayout(user_Qr: getQr , newUser: u),
+          webScreenLayout: WebScreenLayout(),
+        ),
+      ),
+    );
+
       }
     } else {
       snackBar('Login failed. Please check your credentials.');
@@ -146,7 +197,8 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
           padding: const EdgeInsets.symmetric(horizontal: 32),
           width: double.infinity,
-          child: Column(
+          child: SingleChildScrollView(
+            child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Flexible(flex: 2, child: Container()),
@@ -202,7 +254,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ElevatedButton(
                 onPressed: loginInUser,
                 style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 48),
+                  // minimumSize: const Size(double.infinity, 48),
                   foregroundColor: primaryColor,
                   backgroundColor: signInBtn,
                   shape: RoundedRectangleBorder(
@@ -264,6 +316,9 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ],
           ),
+
+          )
+          
         ),
       ),
     );
