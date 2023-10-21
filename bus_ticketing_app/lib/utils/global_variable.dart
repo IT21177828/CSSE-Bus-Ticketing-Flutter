@@ -19,7 +19,7 @@ final homeScreenItems = (getQr, u) {
     UserWallet(user_Qr: getQr, newUser: u),
     UserTopup(user_Qr: getQr, newUser: u),
     UserTravelHistory(),
-    //UserProfile(user_Qr: getQr, newUser: u)
-    BusDeduct()
+    UserProfile(user_Qr: getQr, newUser: u)
+    //BusDeduct()
   ];
 };

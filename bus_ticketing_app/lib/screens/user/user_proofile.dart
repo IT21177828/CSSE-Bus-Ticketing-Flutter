@@ -57,9 +57,6 @@ class _UserWalletState extends State<UserProfile> {
         backgroundColor: const Color.fromARGB(255, 51, 170, 255),
       ),
       body: Container(
-        decoration: const BoxDecoration(
-          color: Color.fromARGB(255, 223, 223, 223),
-        ),
         child: ListView(children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,12 +104,56 @@ class _UserWalletState extends State<UserProfile> {
                                   color: Colors.black),
                             ),
                             const Text(
-                              '@23284',
+                              'Bathiya@gmail.com',
                               style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
                                   color: Colors.grey),
                             ),
+                            const SizedBox(
+                              height: 2,
+                            ),
+                            const Text(
+                              'Gender',
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.grey),
+                            ),
+                            const SizedBox(
+                              height: 2,
+                            ),
+                            const Text(
+                              'Age',
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.grey),
+                            ),
+                            const SizedBox(
+                              height: 2,
+                            ),
+                            const Text(
+                              'Address',
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.grey),
+                            ),
+                            const SizedBox(
+                              height: 2,
+                            ),
+                            const Text(
+                              'Phone Number',
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.grey),
+                            ),
+                            const SizedBox(
+                              height: 2,
+                            ),
+
                             // const SizedBox(
                             //   height: 2,
                             // ),
@@ -161,263 +202,6 @@ class _UserWalletState extends State<UserProfile> {
               // Container(
               //   //////////////////////
               //   child: Container(
-              Card(
-                margin: const EdgeInsets.symmetric(
-                  horizontal: 7,
-                  vertical: 15,
-                ),
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Column(
-                        children: [
-                          const SizedBox(height: 44),
-                          Card(
-                            shadowColor: Colors.transparent,
-                            color: Colors.white,
-
-                            margin: const EdgeInsets.symmetric(
-                              horizontal: 7,
-                              vertical: 0,
-                            ),
-                            // padding: const EdgeInsets.only(
-                            //     left: 5, right: 5, top: 5, bottom: 5),
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              style: ButtonStyle(
-                                // overlayColor: MaterialStateProperty.all<Color>(
-                                //   Colors.white
-                                // ),
-
-                                fixedSize: MaterialStateProperty.all<Size>(
-                                    const Size(300, 50)),
-                                elevation: MaterialStateProperty.all(12.0),
-
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                  Colors.black,
-                                ),
-
-                                shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        20.0), // Adjust the radius as needed
-                                  ),
-                                ),
-                              ),
-                              child: const Row(children: [
-                                Icon(Icons.star_border),
-                                SizedBox(width: 50),
-                                Text('Saved'),
-                                SizedBox(width: 120),
-                                Icon(
-                                  Icons.arrow_forward_ios_outlined,
-                                ),
-                              ]),
-                              // child: const Text('hay'),
-                            ),
-                          ),
-                          const SizedBox(height: 25),
-                          Card(
-                            shadowColor: Colors.transparent,
-                            color: Colors.white,
-
-                            margin: const EdgeInsets.symmetric(
-                              horizontal: 7,
-                              vertical: 0,
-                            ),
-                            // padding: const EdgeInsets.only(
-                            //     left: 5, right: 5, top: 5, bottom: 5),
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              style: ButtonStyle(
-                                // overlayColor: MaterialStateProperty.all<Color>(
-                                //   Colors.white
-                                // ),
-
-                                fixedSize: MaterialStateProperty.all<Size>(
-                                    const Size(300, 50)),
-                                elevation: MaterialStateProperty.all(12.0),
-
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                  Colors.black,
-                                ),
-
-                                shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        20.0), // Adjust the radius as needed
-                                  ),
-                                ),
-                              ),
-                              child: const Row(children: [
-                                Icon(Icons.category_outlined),
-                                SizedBox(width: 50),
-                                Text('Categories'),
-                                SizedBox(width: 90),
-                                Icon(
-                                  Icons.arrow_forward_ios_outlined,
-                                ),
-                              ]),
-                              // child: const Text('hay'),
-                            ),
-                          ),
-                          const SizedBox(height: 25),
-                          Card(
-                            shadowColor: Colors.transparent,
-                            color: Colors.white,
-
-                            margin: const EdgeInsets.symmetric(
-                              horizontal: 7,
-                              vertical: 0,
-                            ),
-                            // padding: const EdgeInsets.only(
-                            //     left: 5, right: 5, top: 5, bottom: 5),
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              style: ButtonStyle(
-                                // overlayColor: MaterialStateProperty.all<Color>(
-                                //   Colors.white
-                                // ),
-
-                                fixedSize: MaterialStateProperty.all<Size>(
-                                    const Size(300, 50)),
-                                elevation: MaterialStateProperty.all(12.0),
-
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                  Colors.black,
-                                ),
-
-                                shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        20.0), // Adjust the radius as needed
-                                  ),
-                                ),
-                              ),
-                              child: const Row(children: [
-                                Icon(Icons.location_on),
-                                SizedBox(width: 50),
-                                Text('Location'),
-                                SizedBox(width: 107),
-                                Icon(
-                                  Icons.arrow_forward_ios_outlined,
-                                ),
-                              ]),
-                              // child: const Text('hay'),
-                            ),
-                          ),
-                          const SizedBox(height: 25),
-                          Card(
-                            shadowColor: Colors.transparent,
-                            color: Colors.white,
-
-                            margin: const EdgeInsets.symmetric(
-                              horizontal: 7,
-                              vertical: 0,
-                            ),
-                            // padding: const EdgeInsets.only(
-                            //     left: 5, right: 5, top: 5, bottom: 5),
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              style: ButtonStyle(
-                                // overlayColor: MaterialStateProperty.all<Color>(
-                                //   Colors.white
-                                // ),
-
-                                fixedSize: MaterialStateProperty.all<Size>(
-                                    const Size(300, 50)),
-                                elevation: MaterialStateProperty.all(12.0),
-
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                  Colors.black,
-                                ),
-
-                                shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        20.0), // Adjust the radius as needed
-                                  ),
-                                ),
-                              ),
-                              child: const Row(children: [
-                                Icon(Icons.feedback_outlined),
-                                SizedBox(width: 50),
-                                Text('Feedbacks'),
-                                SizedBox(width: 92),
-                                Icon(
-                                  Icons.arrow_forward_ios_outlined,
-                                ),
-                              ]),
-                              // child: const Text('hay'),
-                            ),
-                          ),
-                          const SizedBox(height: 25),
-                          Card(
-                            shadowColor: Colors.transparent,
-                            color: Colors.white,
-
-                            margin: const EdgeInsets.symmetric(
-                              horizontal: 7,
-                              vertical: 0,
-                            ),
-                            // padding: const EdgeInsets.only(
-                            //     left: 5, right: 5, top: 5, bottom: 5),
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              style: ButtonStyle(
-                                // overlayColor: MaterialStateProperty.all<Color>(
-                                //   Colors.white
-                                // ),
-
-                                fixedSize: MaterialStateProperty.all<Size>(
-                                    const Size(300, 50)),
-                                elevation: MaterialStateProperty.all(12.0),
-
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                  Colors.black,
-                                ),
-
-                                shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        20.0), // Adjust the radius as needed
-                                  ),
-                                ),
-                              ),
-                              child: const Row(children: [
-                                Icon(Icons.request_page_outlined),
-                                SizedBox(width: 50),
-                                Text('Job Request'),
-                                SizedBox(width: 80),
-                                Icon(
-                                  Icons.arrow_forward_ios_outlined,
-                                ),
-                              ]),
-                              // child: const Text('hay'),
-                            ),
-                          ),
-                          const SizedBox(height: 44),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
 
               // ),
 
