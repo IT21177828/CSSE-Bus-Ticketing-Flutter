@@ -3,9 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:bus_ticketing_app/utils/colors.dart';
 import 'package:bus_ticketing_app/utils/global_variable.dart';
+import 'package:bus_ticketing_app/screens/login_screen.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class MobileScreenLayout extends StatefulWidget {
-  const MobileScreenLayout({super.key});
+  // const MobileScreenLayout({super.key});
+
+  final String user_Qr;
+  final UserType newUser;
+
+  // final String user_Id;
+  MobileScreenLayout({required this.user_Qr, required this.newUser});
 
   @override
   State<MobileScreenLayout> createState() => _MobileScreenLayoutState();
@@ -14,9 +22,15 @@ class MobileScreenLayout extends StatefulWidget {
 class _MobileScreenLayoutState extends State<MobileScreenLayout> {
   int _page = 0;
 
+  late String QRCode;
+  late UserType userObject;
+
   late PageController pageController;
   @override
   void initState() {
+    QRCode = widget.user_Qr;
+    userObject = widget.newUser;
+
     super.initState();
     pageController = PageController();
   }
@@ -43,7 +57,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
       body: PageView(
         controller: pageController,
         onPageChanged: onPageChanged,
-        children: homeScreenItems,
+        children: homeScreenItems(QRCode, userObject),
       ),
       bottomNavigationBar: Container(
         padding: const EdgeInsets.only(top: 10),
@@ -61,10 +75,10 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                   BlendMode.srcIn,
                 ),
                 child: SvgPicture.asset(
-                  'assets/qrcode.svg',
+                  'assets/qrscanner.svg',
                 ),
               ),
-              label: '',
+              label: 'sdvdsf',
               backgroundColor: primaryColor,
             ),
             BottomNavigationBarItem(
@@ -77,7 +91,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                   'assets/wallet.svg',
                 ),
               ),
-              label: '',
+              label: 'sfads',
               backgroundColor: primaryColor,
             ),
             BottomNavigationBarItem(
@@ -90,7 +104,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                   'assets/topup.svg',
                 ),
               ),
-              label: '',
+              label: 'dsads',
               backgroundColor: primaryColor,
             ),
             BottomNavigationBarItem(
@@ -103,7 +117,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                   'assets/history.svg',
                 ),
               ),
-              label: '',
+              label: 'fdsaasd',
               backgroundColor: primaryColor,
             ),
             BottomNavigationBarItem(
@@ -116,7 +130,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                   'assets/profile.svg',
                 ),
               ),
-              label: '',
+              label: 'jgvjh',
               backgroundColor: primaryColor,
             ),
           ],

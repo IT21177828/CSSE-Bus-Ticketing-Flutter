@@ -75,7 +75,7 @@ class _SignupScreenState extends State<SignupScreen> {
         _isLoading = false;
       });
       snackBar(res);
-      navgateToHome();
+      // navgateToHome();
       logger.d('isssssssssssssssssssssssssaaaa  ${_isLoading.toString()}');
     } else {
       setState(() {
@@ -97,16 +97,16 @@ class _SignupScreenState extends State<SignupScreen> {
     }
   }
 
-  void navgateToHome() {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) => const ResponsiveLayout(
-          mobileScreenLayout: MobileScreenLayout(),
-          webScreenLayout: WebScreenLayout(),
-        ),
-      ),
-    );
-  }
+  // void navgateToHome() {
+  //   Navigator.of(context).pushReplacement(
+  //     MaterialPageRoute(
+  //       builder: (context) => const ResponsiveLayout(
+  //         // mobileScreenLayout: MobileScreenLayout(QRCode,userObject),
+  //         webScreenLayout: WebScreenLayout(),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   void navigateToLogin() {
     Navigator.of(context).push(
