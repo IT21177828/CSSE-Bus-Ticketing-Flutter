@@ -11,12 +11,12 @@ const mobileScreenSize = 600;
 const webScreenSize = 600;
 final logger = Logger();
 
-const userID = "1234567890";
-
-const homeScreenItems = [
-  QRImage(controller: userID),
-  UserWallet(),
-  UserTopup(),
-  UserTravelHistory(),
-  UserProfile()
-];
+final homeScreenItems = (getQr, u) {
+  return [
+    QRScreen(user_Qr: getQr, newUser: u),
+    UserWallet(user_Qr: getQr, newUser: u),
+    UserTopup(user_Qr: getQr, newUser: u),
+    UserTravelHistory(),
+    UserProfile(user_Qr: getQr, newUser: u)
+  ];
+};

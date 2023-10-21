@@ -13,6 +13,31 @@ import 'package:bus_ticketing_app/screens/qr_screen.dart';
 import 'package:bus_ticketing_app/screens/qr_reader_screen.dart';
 import 'package:http/http.dart' as http;
 
+class UserType {
+  final String userID;
+  final String emails;
+  final List userRole;
+  final String qrCode;
+  final int accountBalance;
+  final String firstName;
+  final String lastName;
+  final String gender;
+  final int age;
+  final String address;
+
+  UserType(
+      {required this.userID,
+      required this.emails,
+      required this.userRole,
+      required this.qrCode,
+      required this.accountBalance,
+      required this.firstName,
+      required this.lastName,
+      required this.gender,
+      required this.age,
+      required this.address});
+}
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -43,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     // Make an HTTP POST request to the login API
     final response = await http.post(
-      Uri.parse('http://192.168.8.100:5050/users/login'),
+      Uri.parse('http://172.28.28.84:5050/users/login'),
       headers: headers,
       body: jsonEncode({
         'email': email,
@@ -54,12 +79,79 @@ class _LoginScreenState extends State<LoginScreen> {
     final newjsonResponse = json.decode(response.body);
 
     logger.d(newjsonResponse);
+    String getUserID = newjsonResponse['user']['_id'];
+    String getEmail = newjsonResponse['user']['email'];
+    List getRole = newjsonResponse['user']['userRole'];
+    logger.e(getEmail);
 
-    final userId = newjsonResponse['user']['qrCode'];
-    final userType = newjsonResponse['user']['userRole'];
+    String getQr = newjsonResponse['user']['qrCode'];
+    int getAccountBalance = newjsonResponse['user']['accountBalance'];
+    String getFirstName = newjsonResponse['user']['firstName'];
+    String getLastName = newjsonResponse['user']['lastName'];
+    String getGender = newjsonResponse['user']['gender'];
+    int getAge = newjsonResponse['user']['age'];
+    String getAddress = newjsonResponse['user']['address'];
+    logger.e(getAddress);
 
-    logger.d(userType[0]);
-    final checkUserTypes = userType.contains('conductor');
+    UserType u = UserType(
+      userID: getUserID,
+      emails: getEmail,
+      userRole: getRole,
+      qrCode: getQr,
+      accountBalance: getAccountBalance,
+      firstName: getFirstName,
+      lastName: getLastName,
+      gender: getGender,
+      age: getAge,
+      address: getAddress,
+    );
+
+//   get from thilina's branch
+    // @override
+    // void dispose() {
+    //   super.dispose();
+    //   emailController.dispose();
+    //   passwordController.dispose();
+    // }
+
+    //   String res = await AuthMethod().loginUser(
+    //     email: emailController.text,
+    //     password: passwordController.text,
+    //   );
+
+    //   if (res == 'Success') {
+    //     setState(() {
+    //       _isLoading = false;
+    //     });
+
+    //     snackBar(res);
+    //     navgateToHome();
+    //   } else {
+    //     setState(() {
+    //       _isLoading = false;
+    //     });
+    //     snackBar(res);
+
+    //     setState(() {
+    //       _error = res;
+    //     });
+    //   }
+    // }
+
+    // void snackBar(res) {
+    //   if (res == 'Success') {
+    //     showSnackBar(
+    //       'Successfully Login',
+    //       context,
+    //     );
+    //   } else {
+    //     showSnackBar(res, context);
+    //   }
+    // }
+
+    logger.d(newjsonResponse);
+
+    final checkUserTypes = getRole.contains('conductor');
 
     if (response.body != "Incorrect password") {
       // Login successful, handle the response here
@@ -73,10 +165,20 @@ class _LoginScreenState extends State<LoginScreen> {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => BarcodeScannerApp()));
       } else {
+        logger.e("g dgugiuwegfikdcghkdgckducbjkdcdjsacj");
         // ignore: use_build_context_synchronously
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => QRScreen(user_id: userId)));
-        snackBar('Successfully logged in');
+
+        // Navigate to the home screen
+        // Implement your navigation logic here
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => ResponsiveLayout(
+              mobileScreenLayout:
+                  MobileScreenLayout(user_Qr: getQr, newUser: u),
+              webScreenLayout: WebScreenLayout(),
+            ),
+          ),
+        );
       }
     } else {
       snackBar('Login failed. Please check your credentials.');
@@ -94,17 +196,20 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  // void navigateToHome() {
+  //   // Navigate to the home screen
+  //   // Implement your navigation logic here
+  //   Navigator.of(context).pushReplacement(
+  //     MaterialPageRoute(
+  //       builder: (context) => const ResponsiveLayout(
+  //         mobileScreenLayout: MobileScreenLayout(),
+  //         webScreenLayout: WebScreenLayout(),
+  //       ),
+
+//         thilan branch
   void navigateToHome() {
     // Navigate to the home screen
     // Implement your navigation logic here
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) => const ResponsiveLayout(
-          mobileScreenLayout: MobileScreenLayout(),
-          webScreenLayout: WebScreenLayout(),
-        ),
-      ),
-    );
   }
 
   void navigateToSignup() {
@@ -115,11 +220,104 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void setUserID(userId) {
-    final id = userId;
+  // bool isLoading = false;
+  // String error = '';
+
+  void setUserQr(userQr) {
+    final id = userQr;
     // ignore: void_checks
     return id;
   }
+
+//login user
+  // void loginInUser() async {
+  //   setState(() {
+  //     isLoading = true;
+  //     error = '';
+  //   });
+
+  //   final String email = emailController.text;
+  //   final String password = passwordController.text;
+
+  //   final Map<String, String> headers = {
+  //     'Content-Type': 'application/json', // Adjust the content type as needed
+  //   };
+
+  //   // Make an HTTP POST request to the login API
+  //   final response = await http.post(
+  //     Uri.parse('http://192.168.8.100:5050/users/login'),
+  //     headers: headers,
+  //     body: jsonEncode({
+  //       'email': email,
+  //       'passwordHash': password,
+  //     }),
+  //   );
+
+  //   final newjsonResponse = json.decode(response.body);
+
+  //   logger.d(newjsonResponse);
+
+  //   final userQr = newjsonResponse['user']['qrCode'];
+  //   final userType = newjsonResponse['user']['userRole'];
+  //   final userId  = newjsonResponse['user']['_id'];
+  //   // logger.e(userId);
+
+  //   // logger.d(userType[0]);
+  //   final checkUserTypes =userType.contains('user');
+
+  //   if (response.body != "Incorrect password") {
+  //     // Login successful, handle the response here
+  //     final String result = response.body; // Assuming the API returns a result
+  //     setState(() {
+  //       isLoading = false;
+  //     });
+
+  //     if (!checkUserTypes) {
+  //       // ignore: use_build_context_synchronously
+  //       Navigator.push(context,
+  //         MaterialPageRoute(builder: (context) => BarcodeScannerApp() )
+  //       );
+  //     } else {
+  //       // ignore: use_build_context_synchronously
+  //       Navigator.push(context,
+  //           MaterialPageRoute(builder: (context) => QRScreen(user_Qr: userId)));
+
+  //       snackBar('Successfully logged in');
+  //     }
+  //   } else {
+  //     snackBar('Login failed. Please check your credentials.');
+  //     setState(() {
+  //       isLoading = false;
+  //     });
+  //   }
+  // }
+
+  // void snackBar(String message) {
+  //   ScaffoldMessenger.of(context).showSnackBar(
+  //     SnackBar(
+  //       content: Text(message),
+
+  //     ),
+  //   );
+  // }
+
+  // void navigateToSignup() {
+  //   Navigator.of(context).push(
+  //     MaterialPageRoute(
+  //       builder: (context) => const SignupScreen(),
+  //     ),
+  //   );
+  // }
+
+  // void setUserID(userId) {
+  //   final id = userId;
+
+  // void setUserQr(userQr) {
+  //   final id = userQr;
+
+  //   // ignore: void_checks
+  //   return id;
+  // }
 
   @override
   Widget build(BuildContext context) {
