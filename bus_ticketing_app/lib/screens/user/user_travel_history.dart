@@ -1,3 +1,4 @@
+import 'package:bus_ticketing_app/screens/user/travel_history_listitem.dart';
 import 'package:flutter/material.dart';
 
 class UserTravelHistory extends StatefulWidget {
@@ -12,9 +13,7 @@ class _UserTravelState extends State<UserTravelHistory> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Container(
-              alignment: Alignment.center,
-              child: const Text('My Travel History')),
+          title: const Text('Travel History'),
           backgroundColor: Colors.blue,
         ),
         body: Column(
@@ -25,8 +24,18 @@ class _UserTravelState extends State<UserTravelHistory> {
             Container(
               child: const Text(
                 'Travel History',
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 0, 74, 134)),
               ),
+            ),
+            Divider(
+              color: const Color.fromARGB(255, 151, 151, 151),
+              height: 20,
+              thickness: 2,
+              indent: 20,
+              endIndent: 20,
             ),
             Expanded(
               child: SingleChildScrollView(
@@ -34,30 +43,52 @@ class _UserTravelState extends State<UserTravelHistory> {
                   children: <Widget>[
                     // Travel history section
                     Container(
+                      margin: EdgeInsets.only(left: 5, right: 5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Colors.blue.withOpacity(
+                                0.6), // Adjust the opacity and colors as needed
+                            Colors.blue.withOpacity(0.3),
+                          ],
+                        ),
+                      ),
                       padding: const EdgeInsets.all(20),
-                      child: const Column(
+                      child: Column(
                         children: <Widget>[
-                          // Add your travel history widgets here
-                          // For example, a list of travel history items
-                          ListTile(title: Text('Trip 1')),
-                          ListTile(title: Text('Trip 2')),
-                          ListTile(title: Text('Trip 3')),
-                          ListTile(title: Text('Trip 1')),
-                          ListTile(title: Text('Trip 2')),
-                          ListTile(title: Text('Trip 3')),
-                          ListTile(title: Text('Trip 1')),
-                          ListTile(title: Text('Trip 2')),
-                          ListTile(title: Text('Trip 3')),
-                          ListTile(title: Text('Trip 1')),
-                          ListTile(title: Text('Trip 2')),
-                          ListTile(title: Text('Trip 3')),
-                          ListTile(title: Text('Trip 1')),
-                          ListTile(title: Text('Trip 2')),
-                          ListTile(title: Text('Trip 3')),
-                          ListTile(title: Text('Trip 1')),
-                          ListTile(title: Text('Trip 2')),
-                          ListTile(title: Text('Trip 3')),
-                          // Add more ListTile widgets for each trip
+                          TravelHistoryListItem(
+                            title: "#1",
+                            amount: "200.00",
+                            route: 'Kandy - Colombo',
+                          ),
+                          TravelHistoryListItem(
+                            title: "#1",
+                            amount: "200.00",
+                            route: 'Kandy - Colombo',
+                          ),
+                          TravelHistoryListItem(
+                            title: "#1",
+                            amount: "200.00",
+                            route: 'Kandy - Colombo',
+                          ),
+                          TravelHistoryListItem(
+                            title: "#1",
+                            amount: "200.00",
+                            route: 'Kandy - Colombo',
+                          ),
+                          TravelHistoryListItem(
+                            title: "#1",
+                            amount: "200.00",
+                            route: 'Kandy - Colombo',
+                          ),
+                          TravelHistoryListItem(
+                            title: "#1",
+                            amount: "200.00",
+                            route: 'Kandy - Colombo',
+                          ),
                         ],
                       ),
                     ),

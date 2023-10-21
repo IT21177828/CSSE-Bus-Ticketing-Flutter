@@ -132,36 +132,47 @@ class _UserWalletState extends State<UserWallet> {
             height: 10,
           ),
           Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  // Travel history section
-                  Container(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      children: <Widget>[
-                        TravelHistoryListItem(
-                          title: "Trip 1",
-                          amount: "200.00",
-                          entrance: "Kandy",
-                          exit: "Malabe",
-                        ),
-                        TravelHistoryListItem(
-                          title: "Trip 2",
-                          amount: "500.00",
-                          entrance: "Kandy",
-                          exit: "Matara",
-                        ),
-                        TravelHistoryListItem(
-                          title: "Trip 3",
-                          amount: "300.00",
-                          entrance: "Matara",
-                          exit: "Colombo",
-                        ),
-                      ],
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Colors.blue.withOpacity(
+                        0.6), // Adjust the opacity and colors as needed
+                    Colors.blue.withOpacity(0.3),
+                  ],
+                ),
+              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    // Travel history section
+                    Container(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        children: <Widget>[
+                          TravelHistoryListItem(
+                            title: "Trip 1",
+                            amount: "200.00",
+                            route: 'Kandy - Colombo',
+                          ),
+                          TravelHistoryListItem(
+                            title: "Trip 1",
+                            amount: "200.00",
+                            route: 'Kandy - Colombo',
+                          ),
+                          TravelHistoryListItem(
+                            title: "Trip 1",
+                            amount: "200.00",
+                            route: 'Kandy - Colombo',
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

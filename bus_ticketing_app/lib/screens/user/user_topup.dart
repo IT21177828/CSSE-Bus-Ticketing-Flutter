@@ -94,7 +94,7 @@ class _UserTopupState extends State<UserTopup> {
               children: [
                 Text(
                   'Top Up Amount',
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
@@ -103,8 +103,20 @@ class _UserTopupState extends State<UserTopup> {
             height: 20,
           ),
           Container(
-            color: const Color.fromARGB(255, 187, 215, 255),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.blue.withOpacity(
+                      0.6), // Adjust the opacity and colors as needed
+                  Colors.blue.withOpacity(0.3),
+                ],
+              ),
+            ),
             padding: const EdgeInsets.only(left: 60),
+            margin: EdgeInsets.only(left: 30, right: 30),
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               const Text(
                 'LKR',
@@ -118,6 +130,7 @@ class _UserTopupState extends State<UserTopup> {
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                     hintText: '00.00',
+                    border: InputBorder.none,
                   ),
                 ),
               ),
@@ -142,6 +155,9 @@ class _UserTopupState extends State<UserTopup> {
                   textStyle: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
                   ),
                 ),
                 onPressed: () {
