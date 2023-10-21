@@ -1,25 +1,22 @@
+import 'package:bus_ticketing_app/screens/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:bus_ticketing_app/utils/colors.dart';
-import 'package:bus_ticketing_app/utils/global_variable.dart';
-import 'package:bus_ticketing_app/screens/login_screen.dart';
-import 'package:qr_flutter/qr_flutter.dart';
+import 'package:bus_ticketing_app/utils/con_global_variable.dart';
 
-class MobileScreenLayout extends StatefulWidget {
-  // const MobileScreenLayout({super.key});
-
+class ConMobileScreenLayout extends StatefulWidget {
   final String user_Qr;
   final UserType newUser;
 
   // final String user_Id;
-  MobileScreenLayout({required this.user_Qr, required this.newUser});
+  ConMobileScreenLayout({required this.user_Qr, required this.newUser});
 
   @override
-  State<MobileScreenLayout> createState() => _MobileScreenLayoutState();
+  State<ConMobileScreenLayout> createState() => _MobileScreenLayoutState();
 }
 
-class _MobileScreenLayoutState extends State<MobileScreenLayout> {
+class _MobileScreenLayoutState extends State<ConMobileScreenLayout> {
   int _page = 0;
 
   late String QRCode;
@@ -30,7 +27,6 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
   void initState() {
     QRCode = widget.user_Qr;
     userObject = widget.newUser;
-
     super.initState();
     pageController = PageController();
   }
@@ -75,7 +71,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                   BlendMode.srcIn,
                 ),
                 child: SvgPicture.asset(
-                  'assets/qrcode.svg',
+                  'assets/details.svg',
                 ),
               ),
               label: '',
@@ -101,7 +97,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                   BlendMode.srcIn,
                 ),
                 child: SvgPicture.asset(
-                  'assets/topup.svg',
+                  'assets/qrscanner.svg',
                 ),
               ),
               label: '',
@@ -114,7 +110,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                   BlendMode.srcIn,
                 ),
                 child: SvgPicture.asset(
-                  'assets/history.svg',
+                  'assets/bell.svg',
                 ),
               ),
               label: '',

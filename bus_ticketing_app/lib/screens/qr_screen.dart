@@ -62,8 +62,9 @@ class GenerateQRCodeState extends State<QRScreen> {
     int balance = NewUser.accountBalance;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter + QR code'),
+        title: const Text('My QR Code'),
         centerTitle: true,
+        backgroundColor: Colors.blue,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -87,7 +88,7 @@ class GenerateQRCodeState extends State<QRScreen> {
           ),
           Text(
             "Balance: $balance",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           const SizedBox(
             height: 40.0,

@@ -31,10 +31,10 @@ class _UserTopupState extends State<UserTopup> {
   }
 
   TextEditingController amountController = TextEditingController();
-  TextEditingController CardNumberController = TextEditingController();
-  TextEditingController CardHolderNameController = TextEditingController();
-  TextEditingController ExpireDateController = TextEditingController();
-  TextEditingController CvvController = TextEditingController();
+  // TextEditingController CardNumberController = TextEditingController();
+  // TextEditingController CardHolderNameController = TextEditingController();
+  // TextEditingController ExpireDateController = TextEditingController();
+  // TextEditingController CvvController = TextEditingController();
   final Map<String, String> headers = {
     'Content-Type': 'application/json', // Adjust the content type as needed
   };
@@ -47,16 +47,14 @@ class _UserTopupState extends State<UserTopup> {
     try {
       price = double.parse(amountText);
     } catch (e) {
-      // Handle parsing errors, e.g., when the input is not a valid double
-      // You can set a default value or display an error message to the user
       price = 0.0;
-      // Handle the error as needed
     }
 
+    logger.e(uID);
     logger.e(price);
 
     final response = await http.post(
-      Uri.parse('http://192.168.8.101:5050/qr/topUpUserAccount/'),
+      Uri.parse('http://172.28.29.7:5050/transaction/topUpUserAccount/'),
       headers: headers,
       body: jsonEncode({
         'userID': uID,
@@ -81,7 +79,7 @@ class _UserTopupState extends State<UserTopup> {
       appBar: AppBar(
         title:
             Container(alignment: Alignment.center, child: const Text('Top Up')),
-        backgroundColor: const Color.fromARGB(255, 51, 170, 255),
+        backgroundColor: Colors.blue,
         elevation: 1,
       ),
       body: SingleChildScrollView(
@@ -147,10 +145,12 @@ class _UserTopupState extends State<UserTopup> {
                   ),
                 ),
                 onPressed: () {
+                  topUp();
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const UserCheckout()),
+                      builder: (context) => const UserCheckout(),
+                    ),
                   );
                 },
                 child: const Text('Checkout'),

@@ -15,7 +15,7 @@ class _UserTravelState extends State<UserTravelHistory> {
           title: Container(
               alignment: Alignment.center,
               child: const Text('My Travel History')),
-          backgroundColor: const Color.fromARGB(255, 51, 170, 255),
+          backgroundColor: Colors.blue,
         ),
         body: Column(
           children: [

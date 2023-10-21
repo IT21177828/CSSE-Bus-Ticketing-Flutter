@@ -1,4 +1,7 @@
 import 'package:bus_ticketing_app/screens/login_screen.dart';
+import 'package:bus_ticketing_app/screens/user/travel_history_listitem.dart';
+import 'package:bus_ticketing_app/screens/user/user_topup.dart';
+import 'package:bus_ticketing_app/utils/utills.dart';
 import 'package:flutter/material.dart';
 
 class UserWallet extends StatefulWidget {
@@ -25,6 +28,7 @@ class _UserWalletState extends State<UserWallet> {
     NewUser = widget.newUser;
 
     String balance = NewUser.accountBalance.toString();
+    logger.e(balance);
 
     super.initState();
   }
@@ -43,7 +47,7 @@ class _UserWalletState extends State<UserWallet> {
         //         ),
         //   ),
         // ),
-        backgroundColor: const Color.fromARGB(255, 51, 170, 255),
+        backgroundColor: Colors.blue,
         title: Container(
             alignment: Alignment.center, child: const Text('My Wallet')),
 
@@ -76,7 +80,7 @@ class _UserWalletState extends State<UserWallet> {
                   style: TextStyle(fontSize: 30),
                 ),
                 Text(
-                  ' 500.00',
+                  "$balance",
                   style: TextStyle(fontSize: 50),
                 ),
               ],
@@ -89,7 +93,10 @@ class _UserWalletState extends State<UserWallet> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const UserTopup()),
+                MaterialPageRoute(
+                  builder: (context) =>
+                      UserTopup(user_Qr: user_Qr, newUser: NewUser),
+                ),
               );
             },
             style: ElevatedButton.styleFrom(
@@ -107,7 +114,7 @@ class _UserWalletState extends State<UserWallet> {
           Container(
             alignment: Alignment.centerLeft,
             margin: const EdgeInsets.only(left: 30),
-            child: Text(
+            child: const Text(
               'Travel History',
               style: TextStyle(
                 fontSize: 20,
@@ -130,7 +137,7 @@ class _UserWalletState extends State<UserWallet> {
                 children: <Widget>[
                   // Travel history section
                   Container(
-                    padding: EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20),
                     child: Column(
                       children: <Widget>[
                         TravelHistoryListItem(

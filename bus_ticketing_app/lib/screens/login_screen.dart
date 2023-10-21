@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+// import 'package:bus_ticketing_app/responsive/con_mobile_screen_layout.dart';
 import 'package:bus_ticketing_app/responsive/con_mobile_screen_layout.dart';
 import 'package:bus_ticketing_app/responsive/mobile_screen_layout.dart';
 import 'package:bus_ticketing_app/responsive/responsive.dart';
@@ -68,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     // Make an HTTP POST request to the login API
     final response = await http.post(
-      Uri.parse('http://172.28.28.84:5050/users/login'),
+      Uri.parse('http://192.168.8.162:5050/users/login'),
       headers: headers,
       body: jsonEncode({
         'email': email,
@@ -162,8 +163,17 @@ class _LoginScreenState extends State<LoginScreen> {
 
       if (checkUserTypes) {
         // ignore: use_build_context_synchronously
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => BarcodeScannerApp()));
+        // Navigator.push(context,
+        //     MaterialPageRoute(builder: (context) => BarcodeScannerApp()));
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => ResponsiveLayout(
+              mobileScreenLayout:
+                  ConMobileScreenLayout(user_Qr: getQr, newUser: u),
+              webScreenLayout: WebScreenLayout(),
+            ),
+          ),
+        );
       } else {
         logger.e("g dgugiuwegfikdcghkdgckducbjkdcdjsacj");
         // ignore: use_build_context_synchronously
@@ -402,7 +412,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 34,
               ),
               ElevatedButton(
-                onPressed: navigateToHome,
+                onPressed: loginInUser,
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 48),
                   foregroundColor: primaryColor,

@@ -1,3 +1,4 @@
+import 'package:bus_ticketing_app/screens/conducture/bus_deduct.dart';
 import 'package:bus_ticketing_app/screens/qr_screen.dart';
 import 'package:bus_ticketing_app/screens/user/user_proofile.dart';
 import 'package:bus_ticketing_app/screens/user/user_topup.dart';
@@ -18,6 +19,7 @@ final homeScreenItems = (getQr, u) {
     UserWallet(user_Qr: getQr, newUser: u),
     UserTopup(user_Qr: getQr, newUser: u),
     UserTravelHistory(),
-    UserProfile(user_Qr: getQr, newUser: u)
+    //UserProfile(user_Qr: getQr, newUser: u)
+    BusDeduct()
   ];
 };
