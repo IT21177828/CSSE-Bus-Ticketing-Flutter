@@ -20,6 +20,7 @@ class QRScreen extends StatefulWidget {
 }
 
 class GenerateQRCodeState extends State<QRScreen> {
+  // ignore: non_constant_identifier_names
   final String user_Qr;
 
   UserType NewUser;
@@ -35,8 +36,7 @@ class GenerateQRCodeState extends State<QRScreen> {
     String balance = NewUser.accountBalance.toString();
 
     super.initState();
-    // print("User ID: $user_Qr");
-    fetchData(); // Call a separate method for fetching data
+    fetchData();
   }
 
   Future<void> fetchData() async {
@@ -47,7 +47,6 @@ class GenerateQRCodeState extends State<QRScreen> {
     };
 
     print("User ID: $user_Qr");
-    logger.e(NewUser.emails);
 
     final response = await http.post(
       Uri.parse('http://192.168.8.100:5050/users/userData/'),
@@ -63,10 +62,8 @@ class GenerateQRCodeState extends State<QRScreen> {
     int balance = NewUser.accountBalance;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 51, 170, 255),
-        title: Container(
-            alignment: Alignment.center, child: const Text('Get Your Ticket')),
-        elevation: 1,
+        title: const Text('Flutter + QR code'),
+        centerTitle: true,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -92,36 +89,9 @@ class GenerateQRCodeState extends State<QRScreen> {
             "Balance: $balance",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
-
           const SizedBox(
             height: 40.0,
           ),
-          //           ElevatedButton(
-          //   onPressed: loginInUser,
-          //   style: ElevatedButton.styleFrom(
-          //     // minimumSize: const Size(double.infinity, 48),
-          //     foregroundColor: primaryColor,
-          //     backgroundColor: signInBtn,
-          //     shape: RoundedRectangleBorder(
-          //       borderRadius: BorderRadius.circular(25),
-          //     ),
-          //   ),
-          //   child: isLoading
-          //       ? const Center(
-          //           child: CircularProgressIndicator(
-          //             color: primaryColor,
-          //           ),
-          //         )
-          //       : const Text(
-          //           'Sign In',
-          //           style: TextStyle(
-          //             fontWeight: FontWeight.bold,
-          //             color: buttonText,
-          //             fontSize: 20,
-          //             letterSpacing: 1.5,
-          //           ),
-          //         ),
-          // ),
         ],
       ),
     );

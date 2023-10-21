@@ -1,37 +1,32 @@
 import 'package:bus_ticketing_app/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
-
 class UserWallet extends StatefulWidget {
   final String user_Qr;
   final UserType newUser;
 
-  
-
   // final String user_Id;
   const UserWallet({required this.user_Qr, required this.newUser});
 
-   @override
+  @override
   // ignore: no_logic_in_create_state
   _UserWalletState createState() => _UserWalletState(user_Qr, newUser);
-
 }
 
 class _UserWalletState extends State<UserWallet> {
-    late final String user_Qr;
+  late final String user_Qr;
 
- late  UserType NewUser;
+  late UserType NewUser;
 
   _UserWalletState(this.user_Qr, this.NewUser);
 
-    @override
+  @override
   void initState() {
     NewUser = widget.newUser;
 
     String balance = NewUser.accountBalance.toString();
 
     super.initState();
-
   }
 
   @override
@@ -73,7 +68,7 @@ class _UserWalletState extends State<UserWallet> {
           ),
           Container(
             padding: const EdgeInsets.only(top: 20),
-            child:  Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
@@ -81,7 +76,7 @@ class _UserWalletState extends State<UserWallet> {
                   style: TextStyle(fontSize: 30),
                 ),
                 Text(
-                  "$balance" ".00",
+                  ' 500.00',
                   style: TextStyle(fontSize: 50),
                 ),
               ],
@@ -92,7 +87,10 @@ class _UserWalletState extends State<UserWallet> {
           ),
           ElevatedButton(
             onPressed: () {
-              // Add your button click logic here
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const UserTopup()),
+              );
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color.fromARGB(255, 51, 170, 255),
@@ -117,7 +115,13 @@ class _UserWalletState extends State<UserWallet> {
               ),
             ),
           ),
-          SizedBox(
+          const Divider(
+            height: 20,
+            thickness: 2,
+            indent: 20,
+            endIndent: 20,
+          ),
+          const SizedBox(
             height: 10,
           ),
           Expanded(
@@ -129,18 +133,24 @@ class _UserWalletState extends State<UserWallet> {
                     padding: EdgeInsets.all(20),
                     child: Column(
                       children: <Widget>[
-                        // Add your travel history widgets here
-                        // For example, a list of travel history items
-                        ListTile(title: Text('Trip 1')),
-                        ListTile(title: Text('Trip 2')),
-                        ListTile(title: Text('Trip 3')),
-                        ListTile(title: Text('Trip 1')),
-                        ListTile(title: Text('Trip 2')),
-                        ListTile(title: Text('Trip 3')),
-                        ListTile(title: Text('Trip 1')),
-                        ListTile(title: Text('Trip 2')),
-                        ListTile(title: Text('Trip 3')),
-                        // Add more ListTile widgets for each trip
+                        TravelHistoryListItem(
+                          title: "Trip 1",
+                          amount: "200.00",
+                          entrance: "Kandy",
+                          exit: "Malabe",
+                        ),
+                        TravelHistoryListItem(
+                          title: "Trip 2",
+                          amount: "500.00",
+                          entrance: "Kandy",
+                          exit: "Matara",
+                        ),
+                        TravelHistoryListItem(
+                          title: "Trip 3",
+                          amount: "300.00",
+                          entrance: "Matara",
+                          exit: "Colombo",
+                        ),
                       ],
                     ),
                   ),

@@ -1,3 +1,4 @@
+import 'package:bus_ticketing_app/screens/user/checkout.dart';
 import 'dart:convert';
 
 import 'package:bus_ticketing_app/screens/login_screen.dart';
@@ -30,7 +31,10 @@ class _UserTopupState extends State<UserTopup> {
   }
 
   TextEditingController amountController = TextEditingController();
-
+  TextEditingController CardNumberController = TextEditingController();
+  TextEditingController CardHolderNameController = TextEditingController();
+  TextEditingController ExpireDateController = TextEditingController();
+  TextEditingController CvvController = TextEditingController();
   final Map<String, String> headers = {
     'Content-Type': 'application/json', // Adjust the content type as needed
   };
@@ -80,74 +84,83 @@ class _UserTopupState extends State<UserTopup> {
         backgroundColor: const Color.fromARGB(255, 51, 170, 255),
         elevation: 1,
       ),
-      body: Column(children: [
-        const SizedBox(
-          height: 20,
-        ),
-        Container(
-          padding: const EdgeInsets.only(top: 20),
-          child: const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Top Up Amount',
-                style: TextStyle(fontSize: 20),
-              ),
-            ],
+      body: SingleChildScrollView(
+        child: Column(children: [
+          const SizedBox(
+            height: 20,
           ),
-        ),
-        Container(
-          padding: const EdgeInsets.only(top: 20),
-          margin: const EdgeInsets.only(left: 20, right: 20),
-          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            const Text(
-              'LKR',
-              style: TextStyle(fontSize: 30),
+          Container(
+            padding: const EdgeInsets.only(top: 20),
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Top Up Amount',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ],
             ),
-            const SizedBox(width: 10),
-            Flexible(
-              child: TextField(
-                controller: amountController,
-                style: const TextStyle(fontSize: 50),
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                  hintText: '00.00',
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Container(
+            color: const Color.fromARGB(255, 187, 215, 255),
+            padding: const EdgeInsets.only(left: 60),
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const Text(
+                'LKR',
+                style: TextStyle(fontSize: 30),
+              ),
+              const SizedBox(width: 10),
+              Flexible(
+                child: TextField(
+                  controller: amountController,
+                  style: const TextStyle(fontSize: 50),
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    hintText: '00.00',
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-          ]),
-        ),
-        const SizedBox(
-          height: 80,
-        ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            margin: const EdgeInsets.only(top: 200),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 51, 170, 255),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                textStyle: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+              const SizedBox(
+                height: 20,
               ),
-              onPressed: () {
-                topUp();
-              },
-              child: Text('Check Out'),
+            ]),
+          ),
+          const SizedBox(
+            height: 80,
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              margin: const EdgeInsets.only(top: 200),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 51, 170, 255),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  textStyle: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const UserCheckout()),
+                  );
+                },
+                child: const Text('Checkout'),
+              ),
             ),
           ),
-        ),
-      ]
-          // child: const Text('Wallet'),
-          ),
+        ]
+            // child: const Text('Wallet'),
+            ),
+      ),
     );
   }
 }

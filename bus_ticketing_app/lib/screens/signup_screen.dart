@@ -119,6 +119,20 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 60,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        title: const Text(
+          'Sign Up',
+          style: TextStyle(
+            color: navActivaeColor,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
       body: SafeArea(
         top: false,
         bottom: false,
@@ -126,7 +140,7 @@ class _SignupScreenState extends State<SignupScreen> {
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
-                'assets/SignUp.jpg',
+                '',
               ),
               fit: BoxFit.cover,
             ),
