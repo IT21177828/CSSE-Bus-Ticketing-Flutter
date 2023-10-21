@@ -17,18 +17,15 @@ class PaymentListItem extends StatelessWidget {
         ),
         Row(
           children: [
-            const SizedBox(
-              width: 20,
+            Expanded(
+              child: Text(title),
             ),
-            Text(title),
-            const SizedBox(
-              width: 20,
+            Expanded(
+              child: Text(name),
             ),
-            Text(name),
-            const SizedBox(
-              width: 20,
+            Expanded(
+              child: Text("LKR $amount"),
             ),
-            Text("LKR $amount"),
           ],
         ),
         const SizedBox(

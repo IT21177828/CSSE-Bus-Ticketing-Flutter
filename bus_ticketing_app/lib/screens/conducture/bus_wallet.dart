@@ -88,7 +88,7 @@ class _UserWalletState extends State<BusWallet> {
                   style: TextStyle(fontSize: 30),
                 ),
                 Text(
-                  ' 00.00',
+                  ' 500.00',
                   style: TextStyle(fontSize: 50),
                 ),
               ],
@@ -132,17 +132,22 @@ class _UserWalletState extends State<BusWallet> {
                         PaymentListItem(
                           title: "Payment 1",
                           amount: "100.00",
-                          name: "thilina",
+                          name: "Thilina",
+                        ),
+                        PaymentListItem(
+                          title: "Payment 1",
+                          amount: "200.00",
+                          name: "Bathiya",
                         ),
                         PaymentListItem(
                           title: "Payment 1",
                           amount: "100.00",
-                          name: "thilina",
+                          name: "Naveen",
                         ),
                         PaymentListItem(
                           title: "Payment 1",
                           amount: "100.00",
-                          name: "thilina",
+                          name: "Dilan",
                         ),
                       ],
                     ),

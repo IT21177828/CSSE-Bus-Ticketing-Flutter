@@ -1,3 +1,4 @@
+import 'package:bus_ticketing_app/screens/user/checkout.dart';
 import 'package:flutter/material.dart';
 
 class UserTopup extends StatefulWidget {
@@ -9,7 +10,10 @@ class UserTopup extends StatefulWidget {
 
 class _UserTopupState extends State<UserTopup> {
   TextEditingController amountController = TextEditingController();
-
+  TextEditingController CardNumberController = TextEditingController();
+  TextEditingController CardHolderNameController = TextEditingController();
+  TextEditingController ExpireDateController = TextEditingController();
+  TextEditingController CvvController = TextEditingController();
   @override
   void dispose() {
     amountController.dispose();
@@ -46,7 +50,7 @@ class _UserTopupState extends State<UserTopup> {
             height: 20,
           ),
           Container(
-            color: Color.fromARGB(255, 187, 215, 255),
+            color: const Color.fromARGB(255, 187, 215, 255),
             padding: const EdgeInsets.only(left: 60),
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               const Text(
@@ -87,8 +91,14 @@ class _UserTopupState extends State<UserTopup> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                onPressed: () {},
-                child: Text('Check Out'),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const UserCheckout()),
+                  );
+                },
+                child: const Text('Checkout'),
               ),
             ),
           ),

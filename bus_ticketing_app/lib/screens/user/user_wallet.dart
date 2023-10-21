@@ -59,7 +59,7 @@ class _UserWalletState extends State<UserWallet> {
                   style: TextStyle(fontSize: 30),
                 ),
                 Text(
-                  ' 00.00',
+                  ' 500.00',
                   style: TextStyle(fontSize: 50),
                 ),
               ],
@@ -72,7 +72,7 @@ class _UserWalletState extends State<UserWallet> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => UserTopup()),
+                MaterialPageRoute(builder: (context) => const UserTopup()),
               );
             },
             style: ElevatedButton.styleFrom(
@@ -98,7 +98,7 @@ class _UserWalletState extends State<UserWallet> {
               ),
             ),
           ),
-          Divider(
+          const Divider(
             height: 20,
             thickness: 2,
             indent: 20,
@@ -118,20 +118,20 @@ class _UserWalletState extends State<UserWallet> {
                       children: <Widget>[
                         TravelHistoryListItem(
                           title: "Trip 1",
-                          amount: "100.00",
+                          amount: "200.00",
                           entrance: "Kandy",
-                          exit: "Colombo",
+                          exit: "Malabe",
                         ),
                         TravelHistoryListItem(
-                          title: "Trip 1",
-                          amount: "100.00",
+                          title: "Trip 2",
+                          amount: "500.00",
                           entrance: "Kandy",
-                          exit: "Colombo",
+                          exit: "Matara",
                         ),
                         TravelHistoryListItem(
-                          title: "Trip 1",
-                          amount: "100.00",
-                          entrance: "Kandy",
+                          title: "Trip 3",
+                          amount: "300.00",
+                          entrance: "Matara",
                           exit: "Colombo",
                         ),
                       ],
