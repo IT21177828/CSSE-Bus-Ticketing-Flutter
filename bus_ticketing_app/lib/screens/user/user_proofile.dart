@@ -26,6 +26,10 @@ class _UserWalletState extends State<UserProfile> {
     String fName = NewUser.firstName;
     String lName = NewUser.lastName;
     String email = NewUser.emails;
+    String gender = NewUser.gender;
+    int age=NewUser.age;
+    String address=NewUser.address;
+
 
     super.initState();
   }
@@ -50,6 +54,9 @@ class _UserWalletState extends State<UserProfile> {
     String fName = NewUser.firstName;
     String lName = NewUser.lastName;
     String email = NewUser.emails;
+    String gender = NewUser.gender;
+    int age=NewUser.age;
+    String address=NewUser.address;
     return Scaffold(
       appBar: AppBar(
         title: Container(
@@ -96,16 +103,48 @@ class _UserWalletState extends State<UserProfile> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
-                              'Perara Dilshan Dinal',
-                              style: TextStyle(
+                             Text(
+                              
+                                "$fName $lName",
+                              
+                              style:const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black),
                             ),
-                            const Text(
-                              'Bathiya@gmail.com',
-                              style: TextStyle(
+                             Text(
+                              "Email : $email",
+                              style:const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.grey),
+                            ),
+                            const SizedBox(
+                              height: 2,
+                            ),
+                             Text(
+                              "Gender : $gender",
+                              style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.grey),
+                            ),
+                            const SizedBox(
+                              height: 2,
+                            ),
+                             Text(
+                              'Age : $age',
+                              style:  const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.grey),
+                            ),
+                            const SizedBox(
+                              height: 2,
+                            ),
+                             Text(
+                              'Address : $address',
+                              style:const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
                                   color: Colors.grey),
@@ -114,37 +153,7 @@ class _UserWalletState extends State<UserProfile> {
                               height: 2,
                             ),
                             const Text(
-                              'Gender',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.grey),
-                            ),
-                            const SizedBox(
-                              height: 2,
-                            ),
-                            const Text(
-                              'Age',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.grey),
-                            ),
-                            const SizedBox(
-                              height: 2,
-                            ),
-                            const Text(
-                              'Address',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.grey),
-                            ),
-                            const SizedBox(
-                              height: 2,
-                            ),
-                            const Text(
-                              'Phone Number',
+                              'Phone Number : 077 123 4567',
                               style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,

@@ -6,11 +6,11 @@ import 'package:bus_ticketing_app/utils/colors.dart';
 import 'package:bus_ticketing_app/utils/con_global_variable.dart';
 
 class ConMobileScreenLayout extends StatefulWidget {
-  final String user_Qr;
+  final String user_ID_Conduct;
   final UserType newUser;
 
   // final String user_Id;
-  ConMobileScreenLayout({required this.user_Qr, required this.newUser});
+  ConMobileScreenLayout({required this.user_ID_Conduct, required this.newUser});
 
   @override
   State<ConMobileScreenLayout> createState() => _MobileScreenLayoutState();
@@ -19,13 +19,13 @@ class ConMobileScreenLayout extends StatefulWidget {
 class _MobileScreenLayoutState extends State<ConMobileScreenLayout> {
   int _page = 0;
 
-  late String QRCode;
+  late String user_ID_Conduct;
   late UserType userObject;
 
   late PageController pageController;
   @override
   void initState() {
-    QRCode = widget.user_Qr;
+    user_ID_Conduct = widget.user_ID_Conduct;
     userObject = widget.newUser;
     super.initState();
     pageController = PageController();
@@ -53,7 +53,7 @@ class _MobileScreenLayoutState extends State<ConMobileScreenLayout> {
       body: PageView(
         controller: pageController,
         onPageChanged: onPageChanged,
-        children: homeScreenItems(QRCode, userObject),
+        children: homeScreenItems(user_ID_Conduct, userObject),
       ),
       bottomNavigationBar: Container(
         padding: const EdgeInsets.only(top: 10),

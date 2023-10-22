@@ -59,7 +59,11 @@ class GenerateQRCodeState extends State<QRScreen> {
   }
 
   Widget build(BuildContext context) {
+    String user_Qr = NewUser.qrCode;
     int balance = NewUser.accountBalance;
+    String fName = NewUser.firstName;
+    String lName = NewUser.lastName;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('My QR Code'),
@@ -70,6 +74,13 @@ class GenerateQRCodeState extends State<QRScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          Text(
+            "Hey $fName $lName",
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(
+            height: 40.0,
+          ),
           Center(
             child: QrImageView(
               data: user_Qr,
@@ -87,7 +98,7 @@ class GenerateQRCodeState extends State<QRScreen> {
             height: 40.0,
           ),
           Text(
-            "Balance: $balance",
+            "Balance: $balance .00 LKR",
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           const SizedBox(
