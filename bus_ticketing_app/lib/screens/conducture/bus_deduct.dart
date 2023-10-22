@@ -150,6 +150,28 @@ class _UserWalletState extends State<BusDeduct> {
                       children: [
                         Expanded(
                           child: Text(
+                            'Route:',
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 0, 62, 170),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
+                            '\Malabe to Colombo',
+                            style: TextStyle(
+                              fontSize: 24,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
                             'Price:',
                             style: TextStyle(
                               fontSize: 24,

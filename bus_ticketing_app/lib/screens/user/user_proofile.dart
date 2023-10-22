@@ -27,9 +27,8 @@ class _UserWalletState extends State<UserProfile> {
     String lName = NewUser.lastName;
     String email = NewUser.emails;
     String gender = NewUser.gender;
-    int age=NewUser.age;
-    String address=NewUser.address;
-
+    int age = NewUser.age;
+    String address = NewUser.address;
 
     super.initState();
   }
@@ -55,13 +54,13 @@ class _UserWalletState extends State<UserProfile> {
     String lName = NewUser.lastName;
     String email = NewUser.emails;
     String gender = NewUser.gender;
-    int age=NewUser.age;
-    String address=NewUser.address;
+    int age = NewUser.age;
+    String address = NewUser.address;
     return Scaffold(
       appBar: AppBar(
-        title: Container(
-            alignment: Alignment.center, child: const Text('My Profile')),
-        backgroundColor: const Color.fromARGB(255, 51, 170, 255),
+        title: const Text('User Profile'),
+        backgroundColor: Colors.blue,
+        elevation: 1,
       ),
       body: Container(
         child: ListView(children: [
@@ -103,18 +102,16 @@ class _UserWalletState extends State<UserProfile> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                             Text(
-                              
-                                "$fName $lName",
-                              
-                              style:const TextStyle(
+                            Text(
+                              "$fName $lName",
+                              style: const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black),
                             ),
-                             Text(
+                            Text(
                               "Email : $email",
-                              style:const TextStyle(
+                              style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
                                   color: Colors.grey),
@@ -122,7 +119,7 @@ class _UserWalletState extends State<UserProfile> {
                             const SizedBox(
                               height: 2,
                             ),
-                             Text(
+                            Text(
                               "Gender : $gender",
                               style: const TextStyle(
                                   fontSize: 14,
@@ -132,9 +129,9 @@ class _UserWalletState extends State<UserProfile> {
                             const SizedBox(
                               height: 2,
                             ),
-                             Text(
+                            Text(
                               'Age : $age',
-                              style:  const TextStyle(
+                              style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
                                   color: Colors.grey),
@@ -142,9 +139,9 @@ class _UserWalletState extends State<UserProfile> {
                             const SizedBox(
                               height: 2,
                             ),
-                             Text(
+                            Text(
                               'Address : $address',
-                              style:const TextStyle(
+                              style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
                                   color: Colors.grey),

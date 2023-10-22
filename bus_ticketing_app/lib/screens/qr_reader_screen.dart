@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bus_ticketing_app/screens/conducture/bus_deduct.dart';
 import 'package:bus_ticketing_app/screens/login_screen.dart';
 import 'package:bus_ticketing_app/utils/utills.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class _BarcodeScannerAppState extends State<BarcodeScannerApp> {
 
   _BarcodeScannerAppState(this.user_Qr, this.NewUser);
 
-   @override
+  @override
   void initState() {
     NewUser = widget.newUser;
 
@@ -38,9 +39,8 @@ class _BarcodeScannerAppState extends State<BarcodeScannerApp> {
     String lName = NewUser.lastName;
     String email = NewUser.emails;
     String gender = NewUser.gender;
-    int age=NewUser.age;
-    String address=NewUser.address;
-
+    int age = NewUser.age;
+    String address = NewUser.address;
 
     super.initState();
   }
@@ -50,14 +50,13 @@ class _BarcodeScannerAppState extends State<BarcodeScannerApp> {
 
     barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
         "#ff6666", "Cancel", true, ScanMode.QR);
-        logger.e(barcodeScanRes);
+    logger.e(barcodeScanRes);
 
     setState(() {
       _scanBarcode = barcodeScanRes;
     });
 
     String userID = NewUser.userID;
-
 
     String UID = userID;
     double price = 100.00;
@@ -74,18 +73,15 @@ class _BarcodeScannerAppState extends State<BarcodeScannerApp> {
         'amount': 1000.00,
       }),
     );
-
   }
-
- 
-
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Barcode Scanner Example'),
+          title: Text('QR Scanner'),
+          elevation: 1,
         ),
         body: Center(
           child: Column(
@@ -95,10 +91,67 @@ class _BarcodeScannerAppState extends State<BarcodeScannerApp> {
                 onPressed: scanBarcodeNormal,
                 child: Text("Scan Barcode"),
               ),
-              Text(
-                'Scan Result: $_scanBarcode',
-                style: TextStyle(fontSize: 20),
+              SizedBox(
+                height: 40,
               ),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.blue,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(
+                        left: 80,
+                        right: 80,
+                        top: 20,
+                      ),
+                      child: Text(
+                        'Scan result',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 20),
+                      child: Text(
+                        '$_scanBarcode\n',
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              if (_scanBarcode != null &&
+                  _scanBarcode != "No data yet" &&
+                  _scanBarcode != "-1")
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BusDeduct(),
+                        ),
+                      );
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color.fromARGB(255, 0, 67, 123)),
+                      elevation: MaterialStateProperty.all<double>(0),
+                    ),
+                    child: const Text(
+                      "Place Ticket",
+                      style: TextStyle(fontSize: 20),
+                    )),
             ],
           ),
         ),
