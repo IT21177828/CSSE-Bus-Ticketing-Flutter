@@ -101,7 +101,14 @@ class _UserWalletState extends State<UserWallet> {
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color.fromARGB(255, 51, 170, 255),
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+              textStyle: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
             ),
             child: const Text(
               'Top Up',
@@ -122,19 +129,13 @@ class _UserWalletState extends State<UserWallet> {
               ),
             ),
           ),
-          const Divider(
-            height: 20,
-            thickness: 2,
-            indent: 20,
-            endIndent: 20,
-          ),
           const SizedBox(
-            height: 10,
+            height: 20,
           ),
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(0),
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
