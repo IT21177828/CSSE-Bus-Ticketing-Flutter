@@ -75,7 +75,7 @@ class _SignupScreenState extends State<SignupScreen> {
         _isLoading = false;
       });
       snackBar(res);
-      navgateToHome();
+      // navgateToHome();
       logger.d('isssssssssssssssssssssssssaaaa  ${_isLoading.toString()}');
     } else {
       setState(() {
@@ -97,16 +97,16 @@ class _SignupScreenState extends State<SignupScreen> {
     }
   }
 
-  void navgateToHome() {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) => const ResponsiveLayout(
-          mobileScreenLayout: MobileScreenLayout(),
-          webScreenLayout: WebScreenLayout(),
-        ),
-      ),
-    );
-  }
+  // void navgateToHome() {
+  //   Navigator.of(context).pushReplacement(
+  //     MaterialPageRoute(
+  //       builder: (context) => const ResponsiveLayout(
+  //         // mobileScreenLayout: MobileScreenLayout(QRCode,userObject),
+  //         webScreenLayout: WebScreenLayout(),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   void navigateToLogin() {
     Navigator.of(context).push(
@@ -119,158 +119,172 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 60,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        title: const Text(
+          'Sign Up',
+          style: TextStyle(
+            color: navActivaeColor,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
       body: SafeArea(
         top: false,
         bottom: false,
-        child: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(
-                'assets/SignUp.jpg',
+        child: SingleChildScrollView(
+          child: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  '',
+                ),
+                fit: BoxFit.cover,
               ),
-              fit: BoxFit.cover,
             ),
-          ),
-          padding: const EdgeInsets.symmetric(horizontal: 32),
-          width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Flexible(flex: 2, child: Container()),
-              const SizedBox(height: 184),
-              //circle avatar
-              Stack(
-                children: [
-                  image != null
-                      ? CircleAvatar(
-                          radius: 64,
-                          backgroundImage: MemoryImage(image!),
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            width: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: 184),
+                //circle avatar
+                Stack(
+                  children: [
+                    image != null
+                        ? CircleAvatar(
+                            radius: 64,
+                            backgroundImage: MemoryImage(image!),
+                          )
+                        : const CircleAvatar(
+                            radius: 64,
+                            backgroundImage: NetworkImage(
+                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVoRlmXdh-WdDE4s4LFsOL1p05KKG8_ERrfqVFXaC57xgNLZFMMEqTmNJ8ltgGAYEdEwA&usqp=CAU',
+                            ),
+                          ),
+                    Positioned(
+                      bottom: -10,
+                      left: 82,
+                      child: IconButton(
+                        onPressed: () {
+                          selectImage();
+                        },
+                        icon: const Icon(Icons.add_a_photo),
+                        color: hintColor,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                //text feild for username
+                TextFieldInput(
+                  textEditingController: usernameController,
+                  hintText: 'Enter your username',
+                  textInputType: TextInputType.text,
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                //text feild email
+                TextFieldInput(
+                  textEditingController: emailController,
+                  hintText: 'Enter your email',
+                  textInputType: TextInputType.emailAddress,
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                //text feild password
+                TextFieldInput(
+                  textEditingController: passwordController,
+                  hintText: 'Enter your password',
+                  textInputType: TextInputType.visiblePassword,
+                  isPass: true,
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                //input field for bio
+                TextFieldInput(
+                  textEditingController: bioController,
+                  hintText: 'Enter your bio',
+                  textInputType: TextInputType.text,
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                // button login
+                ElevatedButton(
+                  onPressed: () {
+                    signUpUserData();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(double.infinity, 48),
+                    foregroundColor: primaryColor,
+                    backgroundColor: signInBtn,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                  ),
+                  child: _isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                            color: primaryColor,
+                          ),
                         )
-                      : const CircleAvatar(
-                          radius: 64,
-                          backgroundImage: NetworkImage(
-                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVoRlmXdh-WdDE4s4LFsOL1p05KKG8_ERrfqVFXaC57xgNLZFMMEqTmNJ8ltgGAYEdEwA&usqp=CAU',
+                      : const Text(
+                          'Sign Up',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: buttonText,
+                            fontSize: 20,
+                            letterSpacing: 1.5,
                           ),
                         ),
-                  Positioned(
-                    bottom: -10,
-                    left: 82,
-                    child: IconButton(
-                      onPressed: () {
-                        selectImage();
-                      },
-                      icon: const Icon(Icons.add_a_photo),
-                      color: hintColor,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              //text feild for username
-              TextFieldInput(
-                textEditingController: usernameController,
-                hintText: 'Enter your username',
-                textInputType: TextInputType.text,
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              //text feild email
-              TextFieldInput(
-                textEditingController: emailController,
-                hintText: 'Enter your email',
-                textInputType: TextInputType.emailAddress,
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              //text feild password
-              TextFieldInput(
-                textEditingController: passwordController,
-                hintText: 'Enter your password',
-                textInputType: TextInputType.visiblePassword,
-                isPass: true,
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              //input field for bio
-              TextFieldInput(
-                textEditingController: bioController,
-                hintText: 'Enter your bio',
-                textInputType: TextInputType.text,
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              // button login
-              ElevatedButton(
-                onPressed: () {
-                  signUpUserData();
-                },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 48),
-                  foregroundColor: primaryColor,
-                  backgroundColor: signInBtn,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
-                  ),
                 ),
-                child: _isLoading
-                    ? const Center(
-                        child: CircularProgressIndicator(
-                          color: primaryColor,
-                        ),
-                      )
-                    : const Text(
-                        'Sign Up',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: buttonText,
-                          fontSize: 20,
-                          letterSpacing: 1.5,
-                        ),
-                      ),
-              ),
-              Flexible(flex: 2, child: Container()),
-              //go to signup
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 8,
-                    ),
-                    child: const Text("Having an account?",
-                        style: TextStyle(
-                          color: hintColor,
-                        )),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      navigateToLogin();
-                    },
-                    child: Container(
+                //go to signup
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
                       padding: const EdgeInsets.symmetric(
                         vertical: 8,
                       ),
-                      child: const Text(
-                        "Login",
-                        style: TextStyle(
-                          color: postUserNameColor,
-                          fontWeight: FontWeight.bold,
+                      child: const Text("Having an account?",
+                          style: TextStyle(
+                            color: hintColor,
+                          )),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        navigateToLogin();
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 8,
+                        ),
+                        child: const Text(
+                          "Login",
+                          style: TextStyle(
+                            color: postUserNameColor,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 64,
-              )
-            ],
+                  ],
+                ),
+                const SizedBox(
+                  height: 64,
+                )
+              ],
+            ),
           ),
         ),
       ),

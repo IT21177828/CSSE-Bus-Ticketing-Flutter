@@ -7,45 +7,40 @@ import 'package:bus_ticketing_app/screens/login_screen.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-
-
 class QRScreen extends StatefulWidget {
-  // const QRScreen({super.key});
-  // ignore: non_constant_identifier_names
   final String user_Qr;
+  final UserType newUser;
+
   // final String user_Id;
-  QRScreen({required this.user_Qr});
+  const QRScreen({required this.user_Qr, required this.newUser});
 
   @override
   // ignore: no_logic_in_create_state
-  GenerateQRCodeState createState() => GenerateQRCodeState(user_Qr);
-
-  
+  GenerateQRCodeState createState() => GenerateQRCodeState(user_Qr, newUser);
 }
-
-
 
 class GenerateQRCodeState extends State<QRScreen> {
   // ignore: non_constant_identifier_names
   final String user_Qr;
-  // final String user_Id;
 
-  GenerateQRCodeState(this.user_Qr);
+  UserType NewUser;
+
+  GenerateQRCodeState(this.user_Qr, this.NewUser);
 
   TextEditingController controller = TextEditingController();
 
   @override
   void initState() {
+    NewUser = widget.newUser;
+
+    String balance = NewUser.accountBalance.toString();
+
     super.initState();
-    // print("User ID: $user_Qr");
-    fetchData(); // Call a separate method for fetching data
+    fetchData();
   }
 
   Future<void> fetchData() async {
     final String user = user_Qr;
-    print("aaaaaa");
-    print("User ID: $user_Qr");
-    print("aaaaaa");
 
     final Map<String, String> headers = {
       'Content-Type': 'application/json', // Adjust the content type as needed
@@ -61,29 +56,15 @@ class GenerateQRCodeState extends State<QRScreen> {
       }),
     );
     final decodeData = json.decode(response.body);
-
-    final userQr = decodeData['qrCode'];
-    final userAccoutBalance = decodeData['accountBalance'];
-    final userFName = decodeData['firstName'];
-    final userLName = decodeData['lastName'];
-    final userEmail = decodeData['email'];
-    final userGender = decodeData['gender'];
-    final userAddress = decodeData['address'];
-
-    logger.e(userQr);
-
   }
- 
-  
-
-
-
 
   Widget build(BuildContext context) {
+    int balance = NewUser.accountBalance;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter + QR code'),
+        title: const Text('My QR Code'),
         centerTitle: true,
+        backgroundColor: Colors.blue,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -101,7 +82,17 @@ class GenerateQRCodeState extends State<QRScreen> {
                 ),
               ),
             ),
-          )
+          ),
+          const SizedBox(
+            height: 40.0,
+          ),
+          Text(
+            "Balance: $balance",
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(
+            height: 40.0,
+          ),
         ],
       ),
     );

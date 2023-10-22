@@ -61,12 +61,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
-  uses-material-design: true
-
-  # To add assets to your application, add an assets section, like this:
   assets:
     - assets/logo.svg
     - assets/ic_instagram.svg
@@ -83,6 +77,21 @@ flutter:
     - assets/feedback.svg
     - assets/message.svg
     - assets/saved.svg
+    - assets/qrcode.svg
+    - assets/profile.svg
+    - assets/wallet.svg
+    - assets/topup.svg
+    - assets/history.svg
+    - assets/qrscanner.svg
+    - assets/bell.svg
+    - assets/details.svg
+    - assets/passenger.svg
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
