@@ -69,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     // Make an HTTP POST request to the login API
     final response = await http.post(
-      Uri.parse('http://192.168.8.162:5050/users/login'),
+      Uri.parse('http://172.28.29.7:5050/users/login'),
       headers: headers,
       body: jsonEncode({
         'email': email,
@@ -349,132 +349,138 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SafeArea(
         top: false,
         bottom: false,
-        child: Container(
-          decoration: const BoxDecoration(
-              // image: DecorationImage(
-              //   image: AssetImage(''), // Add your image path here
-              //   fit: BoxFit.cover,
-              // ),
-              ),
-          padding: const EdgeInsets.symmetric(horizontal: 32),
-          width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Flexible(flex: 2, child: Container()),
-              const CircleAvatar(
-                radius: 84,
-                backgroundColor: primaryColor,
-                child: CircleAvatar(
-                  radius: 74,
-                  // backgroundImage: NetworkImage(
-                  //   // 'https://images.unsplash.com/photo-1681811472561-801b008d75e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60',
-                  // ),
+        child: SingleChildScrollView(
+          child: Container(
+            decoration: const BoxDecoration(
+                // image: DecorationImage(
+                //   image: AssetImage(''), // Add your image path here
+                //   fit: BoxFit.cover,
+                // ),
                 ),
-              ),
-              const SizedBox(
-                height: 32,
-              ),
-              const Text(
-                'Sign In to Continue',
-                style: TextStyle(
-                  color: postUserNameColor,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            width: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 64,
                 ),
-              ),
-              const SizedBox(height: 44),
-              TextFieldInput(
-                textEditingController: emailController,
-                hintText: 'Email',
-                textInputType: TextInputType.emailAddress,
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              TextFieldInput(
-                textEditingController: passwordController,
-                hintText: 'Password',
-                textInputType: TextInputType.visiblePassword,
-                isPass: true,
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              Text(
-                error,
-                style: const TextStyle(
-                  color: Colors.blue,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(
-                height: 34,
-              ),
-              ElevatedButton(
-                onPressed: loginInUser,
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 48),
-                  foregroundColor: primaryColor,
-                  backgroundColor: signInBtn,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                ),
-                child: isLoading
-                    ? const Center(
-                        child: CircularProgressIndicator(
-                          color: primaryColor,
-                        ),
-                      )
-                    : const Text(
-                        'Sign In',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: buttonText,
-                          fontSize: 20,
-                          letterSpacing: 1.5,
-                        ),
-                      ),
-              ),
-              Flexible(flex: 2, child: Container()),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 8,
-                    ),
-                    child: const Text(
-                      "Don't have an account?",
-                      style: TextStyle(
-                        color: hintColor,
-                      ),
+                const CircleAvatar(
+                  radius: 84,
+                  backgroundColor: primaryColor,
+                  child: CircleAvatar(
+                    radius: 74,
+                    backgroundImage: NetworkImage(
+                      'https://images.unsplash.com/photo-1681811472561-801b008d75e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60',
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      navigateToSignup();
-                    },
-                    child: Container(
+                ),
+                const SizedBox(
+                  height: 32,
+                ),
+                const Text(
+                  'Sign In to Continue',
+                  style: TextStyle(
+                    color: postUserNameColor,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 44),
+                TextFieldInput(
+                  textEditingController: emailController,
+                  hintText: 'Email',
+                  textInputType: TextInputType.emailAddress,
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                TextFieldInput(
+                  textEditingController: passwordController,
+                  hintText: 'Password',
+                  textInputType: TextInputType.visiblePassword,
+                  isPass: true,
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                Text(
+                  error,
+                  style: const TextStyle(
+                    color: Colors.blue,
+                    fontSize: 16,
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                  onPressed: loginInUser,
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(double.infinity, 48),
+                    foregroundColor: primaryColor,
+                    backgroundColor: signInBtn,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                  ),
+                  child: isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                            color: primaryColor,
+                          ),
+                        )
+                      : const Text(
+                          'Sign In',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: buttonText,
+                            fontSize: 20,
+                            letterSpacing: 1.5,
+                          ),
+                        ),
+                ),
+                const SizedBox(
+                  height: 60,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
                       padding: const EdgeInsets.symmetric(
                         vertical: 8,
                       ),
                       child: const Text(
-                        "Sign Up ",
+                        "Don't have an account?",
                         style: TextStyle(
-                          color: postUserNameColor,
-                          fontWeight: FontWeight.bold,
+                          color: hintColor,
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 64,
-              ),
-            ],
+                    GestureDetector(
+                      onTap: () {
+                        navigateToSignup();
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 8,
+                        ),
+                        child: const Text(
+                          "Sign Up ",
+                          style: TextStyle(
+                            color: postUserNameColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 64,
+                ),
+              ],
+            ),
           ),
         ),
       ),
