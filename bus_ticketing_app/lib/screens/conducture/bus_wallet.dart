@@ -69,7 +69,7 @@ class _UserWalletState extends State<BusWallet> {
               children: [
                 Text(
                   'Current Balance',
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
@@ -78,14 +78,27 @@ class _UserWalletState extends State<BusWallet> {
             height: 20,
           ),
           Container(
-            color: Color.fromARGB(255, 187, 215, 255),
             padding: const EdgeInsets.symmetric(vertical: 20),
+            margin: const EdgeInsets.symmetric(horizontal: 30),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.blue.withOpacity(
+                      0.6), // Adjust the opacity and colors as needed
+                  Colors.blue.withOpacity(0.3),
+                ],
+              ),
+            ),
             child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   'LKR',
-                  style: TextStyle(fontSize: 30),
+                  style: TextStyle(
+                      fontSize: 30, color: Color.fromARGB(255, 0, 62, 170)),
                 ),
                 Text(
                   ' 500.00',
@@ -108,11 +121,12 @@ class _UserWalletState extends State<BusWallet> {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 0, 62, 170),
               ),
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 20,
           ),
           Divider(
             height: 0, // Height of the vertical line
@@ -126,6 +140,18 @@ class _UserWalletState extends State<BusWallet> {
                 children: <Widget>[
                   // Travel history section
                   Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Colors.blue.withOpacity(
+                              0.6), // Adjust the opacity and colors as needed
+                          Colors.blue.withOpacity(0.3),
+                        ],
+                      ),
+                    ),
                     padding: EdgeInsets.all(20),
                     child: Column(
                       children: <Widget>[
@@ -143,6 +169,11 @@ class _UserWalletState extends State<BusWallet> {
                           title: "Payment 1",
                           amount: "100.00",
                           name: "Naveen",
+                        ),
+                        PaymentListItem(
+                          title: "Payment 1",
+                          amount: "100.00",
+                          name: "Dilan",
                         ),
                         PaymentListItem(
                           title: "Payment 1",

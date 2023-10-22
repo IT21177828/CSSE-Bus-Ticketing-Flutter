@@ -76,19 +76,36 @@ class _BusDetailsState extends State<BusDetails> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(height: 20),
-          SvgPicture.asset(
-            'assets/passenger.svg',
-            height: 100,
-            width: 100,
+          Container(
+            padding: EdgeInsets.all(40),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.blue.withOpacity(
+                      0.6), // Adjust the opacity and colors as needed
+                  Colors.blue.withOpacity(0.3),
+                ],
+              ),
+            ),
+            child: SvgPicture.asset(
+              'assets/passenger.svg',
+              height: 100,
+              width: 100,
+            ),
           ),
           const SizedBox(height: 20),
-          Center(
-            child: Text(
-              'Remaining Passengers: $capacitys',
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.blue,
+          Container(
+            child: Center(
+              child: Text(
+                'Remaining Passengers: $capacitys',
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue,
+                ),
               ),
             ),
           ),
@@ -96,7 +113,7 @@ class _BusDetailsState extends State<BusDetails> {
           const SizedBox(height: 20),
           Container(
             margin: EdgeInsets.only(top: 200),
-            child:  ElevatedButton(
+            child: ElevatedButton(
               onPressed: () {},
               child: Text(
                 'Over Crouded',

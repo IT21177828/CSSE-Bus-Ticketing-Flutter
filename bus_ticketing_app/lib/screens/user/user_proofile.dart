@@ -65,20 +65,32 @@ class _UserWalletState extends State<UserProfile> {
       body: Container(
         child: ListView(children: [
           Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-
             // body: Row(
             children: [
-              Card(
+              const SizedBox(
+                height: 60,
+              ),
+
+              Container(
                 margin: const EdgeInsets.symmetric(
                   horizontal: 7,
                   vertical: 7,
                 ),
+                padding: const EdgeInsets.all(20),
                 // elevation:20,
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Colors.blue.withOpacity(
+                          0.6), // Adjust the opacity and colors as needed
+                      Colors.blue.withOpacity(0.3),
+                    ],
+                  ),
                 ),
+
                 // padding: const EdgeInsets.only(left: 30, right: 20, top: 20),
                 child: Container(
                   padding: const EdgeInsets.only(
@@ -109,55 +121,58 @@ class _UserWalletState extends State<UserProfile> {
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black),
                             ),
+                            const SizedBox(
+                              height: 10,
+                            ),
                             Text(
                               "Email : $email",
                               style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
-                                  color: Colors.grey),
+                                  color: const Color.fromARGB(255, 0, 67, 123)),
                             ),
                             const SizedBox(
-                              height: 2,
+                              height: 5,
                             ),
                             Text(
                               "Gender : $gender",
                               style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
-                                  color: Colors.grey),
+                                  color: const Color.fromARGB(255, 0, 67, 123)),
                             ),
                             const SizedBox(
-                              height: 2,
+                              height: 5,
                             ),
                             Text(
                               'Age : $age',
                               style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
-                                  color: Colors.grey),
+                                  color: const Color.fromARGB(255, 0, 67, 123)),
                             ),
                             const SizedBox(
-                              height: 2,
+                              height: 5,
                             ),
                             Text(
                               'Address : $address',
                               style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
-                                  color: Colors.grey),
+                                  color: const Color.fromARGB(255, 0, 67, 123)),
                             ),
                             const SizedBox(
-                              height: 2,
+                              height: 5,
                             ),
                             const Text(
                               'Phone Number : 077 123 4567',
                               style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
-                                  color: Colors.grey),
+                                  color: const Color.fromARGB(255, 0, 67, 123)),
                             ),
                             const SizedBox(
-                              height: 2,
+                              height: 25,
                             ),
 
                             // const SizedBox(
@@ -165,24 +180,22 @@ class _UserWalletState extends State<UserProfile> {
                             // ),
                             ElevatedButton(
                               onPressed: () {},
-                              // style: ButtonStyle(
-                              //   fixedSize: MaterialStateProperty.all<Size>(
-                              //       const Size(110, 30)),
-                              //   elevation: MaterialStateProperty.all(12.0),
-                              //   backgroundColor:
-                              //       MaterialStateProperty.all<Color>(
-                              //     // signInBtn,
-                              //   ),
-
-                              //   shape: MaterialStateProperty.all<
-                              //       RoundedRectangleBorder>(
-                              //     RoundedRectangleBorder(
-                              //       borderRadius: BorderRadius.circular(
-                              //         12.0,
-                              //       ), // Adjust the radius as needed
-                              //     ),
-                              //   ),
-                              // ),
+                              style: ButtonStyle(
+                                fixedSize: MaterialStateProperty.all<Size>(
+                                    const Size(110, 30)),
+                                elevation: MaterialStateProperty.all(12.0),
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        const Color.fromARGB(255, 0, 67, 123)),
+                                // shape: MaterialStateProperty.all<
+                                //     RoundedRectangleBorder>(
+                                //   RoundedRectangleBorder(
+                                //     borderRadius: BorderRadius.circular(
+                                //       12.0,
+                                //     ), // Adjust the radius as needed
+                                //   ),
+                                // ),
+                              ),
                               child: const Text(
                                 'Edit Profile',
                                 style: TextStyle(
@@ -194,15 +207,10 @@ class _UserWalletState extends State<UserProfile> {
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
                       ]),
                 ),
               ),
+
               /////////////////////////////////////////////////////////
 
               // Container(
@@ -213,6 +221,9 @@ class _UserWalletState extends State<UserProfile> {
 
               //////////////////////////////////////////
               // ),
+              const SizedBox(
+                height: 60,
+              ),
               Center(
                 child: ElevatedButton(
                   onPressed: () {
