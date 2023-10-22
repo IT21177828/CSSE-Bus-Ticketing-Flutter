@@ -1,19 +1,71 @@
+import 'dart:convert';
+
+import 'package:bus_ticketing_app/screens/login_screen.dart';
+import 'package:bus_ticketing_app/utils/utills.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:http/http.dart' as http;
+import 'package:logger/logger.dart';
 
 class BusDetails extends StatefulWidget {
-  const BusDetails({Key? key}) : super(key: key);
+  final String user_ID_Conduct;
+
+  final UserType newUser;
+
+  // final String user_Id;
+  const BusDetails({required this.user_ID_Conduct, required this.newUser});
 
   @override
-  State<BusDetails> createState() => _BusDetailsState();
+  // ignore: no_logic_in_create_state
+  _BusDetailsState createState() => _BusDetailsState(user_ID_Conduct, newUser);
 }
 
 class _BusDetailsState extends State<BusDetails> {
+  final String user_ID_Conduct;
+  UserType NewUser;
+  int capacity = 0;
+
+  void getBusDetails() async {
+    logger.e(user_ID_Conduct);
+
+    final Map<String, String> headers = {
+      'Content-Type': 'application/json', // Adjust the content type as needed
+    };
+
+    // Make an HTTP POST request to the login API
+    final response = await http.post(
+      Uri.parse('http://192.168.8.103:5050/bus/getDetailsConId'),
+      headers: headers,
+      body: jsonEncode({
+        'conductId': user_ID_Conduct,
+      }),
+    );
+    // logger.e(response.body);
+
+    final newjsonResponse = json.decode(response.body);
+    // logger.e(newjsonResponse);
+
+    capacity = newjsonResponse['capacity'];
+
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getBusDetails();
+  }
+
+  _BusDetailsState(this.user_ID_Conduct, this.NewUser);
   int remainingPassengers = 30; // Replace with actual data
   double currentAmount = 150.0; // Replace with actual data
 
   @override
   Widget build(BuildContext context) {
+    String QRCode = user_ID_Conduct;
+    int capacitys = capacity;
+    logger.e(capacitys);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Bus Details'),
@@ -32,7 +84,7 @@ class _BusDetailsState extends State<BusDetails> {
           const SizedBox(height: 20),
           Center(
             child: Text(
-              'Remaining Passengers: $remainingPassengers',
+              'Remaining Passengers: $capacitys',
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -44,9 +96,9 @@ class _BusDetailsState extends State<BusDetails> {
           const SizedBox(height: 20),
           Container(
             margin: EdgeInsets.only(top: 200),
-            child: ElevatedButton(
+            child:  ElevatedButton(
               onPressed: () {},
-              child: const Text(
+              child: Text(
                 'Over Crouded',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
