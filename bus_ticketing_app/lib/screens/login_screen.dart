@@ -69,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     // Make an HTTP POST request to the login API
     final response = await http.post(
-      Uri.parse('http://192.168.8.162:5050/users/login'),
+      Uri.parse('http://192.168.8.101:5050/users/login'),
       headers: headers,
       body: jsonEncode({
         'email': email,

@@ -10,7 +10,7 @@ class UserTopup extends StatefulWidget {
   final String user_Qr;
   final UserType newUser;
 
-  const UserTopup({required this.user_Qr, required this.newUser});
+   const UserTopup({required this.user_Qr, required this.newUser});
 
   @override
   // ignore: no_logic_in_create_state
@@ -40,8 +40,11 @@ class _UserTopupState extends State<UserTopup> {
   };
 
   void topUp() async {
+    
     String amountText = amountController.text;
-    double price;
+    double prices = double.parse(amountText);
+    double price =prices;
+    // logger.e(amountText);
     String uID = NewUser.userID.toString();
 
     try {
@@ -50,18 +53,18 @@ class _UserTopupState extends State<UserTopup> {
       price = 0.0;
     }
 
-    logger.e(uID);
-    logger.e(price);
+    // logger.e(uID);
+    // logger.e(price);
 
     final response = await http.post(
-      Uri.parse('http://172.28.29.7:5050/transaction/topUpUserAccount/'),
+      Uri.parse('http://192.168.8.101:5050/transaction/topUpUserAccount/'),
       headers: headers,
       body: jsonEncode({
-        'userID': uID,
+        'userID': '652939bd9215d4fb137705b1',
         'amount': price,
       }),
     );
-
+logger.e("hay I am in");
     final newjsonResponse = json.decode(response.body);
     logger.e(newjsonResponse);
   }
@@ -165,7 +168,10 @@ class _UserTopupState extends State<UserTopup> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const UserCheckout(),
+                      builder: (context) =>  UserCheckout(
+         user_Qr: user_Qr, 
+        newUser: NewUser,
+                      ),
                     ),
                   );
                 },
