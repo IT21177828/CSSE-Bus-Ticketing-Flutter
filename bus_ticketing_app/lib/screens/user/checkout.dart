@@ -1,13 +1,26 @@
+import 'package:bus_ticketing_app/screens/login_screen.dart';
+import 'package:bus_ticketing_app/screens/qr_screen.dart';
+import 'package:bus_ticketing_app/screens/user/user_topup.dart';
 import 'package:flutter/material.dart';
 
 class UserCheckout extends StatefulWidget {
-  const UserCheckout({Key? key}) : super(key: key);
+  final String user_Qr;
+  final UserType newUser;
+
+  const UserCheckout({required this.user_Qr, required this.newUser});
 
   @override
-  State<UserCheckout> createState() => _UserTopupState();
+  // ignore: no_logic_in_create_state
+  _UserTopupState createState() => _UserTopupState(user_Qr, newUser);
 }
 
 class _UserTopupState extends State<UserCheckout> {
+
+    late final String user_Qr;
+  late UserType NewUser;
+
+  _UserTopupState(this.user_Qr, this.NewUser);
+
   TextEditingController CardNumberController = TextEditingController();
   TextEditingController CardHolderNameController = TextEditingController();
   TextEditingController ExpireDateController = TextEditingController();
@@ -216,7 +229,15 @@ class _UserTopupState extends State<UserCheckout> {
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+
+                final userTopup = QRScreen(user_Qr: user_Qr, newUser: NewUser);
+                    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => userTopup,
+      ),
+    );
+              },
               child: Text('Submit'),
             ),
           ),

@@ -1,29 +1,100 @@
+import 'dart:convert';
+
 import 'package:bus_ticketing_app/screens/conducture/payment_list_item.dart';
+import 'package:bus_ticketing_app/utils/utills.dart';
 import 'package:flutter/material.dart';
+import 'package:bus_ticketing_app/screens/login_screen.dart';
+
+import 'package:http/http.dart' as http;
 
 class BusDeduct extends StatefulWidget {
-  const BusDeduct({Key? key}) : super(key: key);
+  final String qrCode;
+  final UserType conductor_Object;
+
+  BusDeduct({required this.qrCode, required this.conductor_Object});
 
   @override
-  State<BusDeduct> createState() => _UserWalletState();
+  _UserWalletState createState() => _UserWalletState(qrCode, conductor_Object);
 }
 
+
 class _UserWalletState extends State<BusDeduct> {
+
+
+  late final String qrCode;
+  late UserType conductor_Object;
+
+  _UserWalletState(this.qrCode, this.conductor_Object);
+
+    void initState() {
+      getUserDetails();
+    conductor_Object = widget.conductor_Object;
+
+    String fName = conductor_Object.firstName;
+    String userID = conductor_Object.userID;
+    String lName = conductor_Object.lastName;
+    String email = conductor_Object.emails;
+    String gender = conductor_Object.gender;
+    int age = conductor_Object.age;
+    String address = conductor_Object.address;
+    super.initState();
+  }
+
+
+Future getUserDetails() async {
+
+      final Map<String, String> headers = {
+      'Content-Type': 'application/json', // Adjust the content type as needed
+    };
+
+        final response = await http.post(
+      Uri.parse('http://192.168.8.101:5050/users/userDetailsByQr'),
+      headers: headers,
+      body: jsonEncode({
+        // 'userID': qrCode,
+         "qrCode": "652953293a520e915fcf75f3",
+      }),
+
+      
+    );
+
+    final decodeData = json.decode(response.body);
+
+    String firstName = decodeData['user']['firstName'];
+    String lastName = decodeData['user']['lastName'];
+    String accountBalance = decodeData['user']['accountBalance'];
+
+
+
+    logger.e(decodeData);
+
+
+}
+
+  Future placeTicket() async {
+    final Map<String, String> headers = {
+      'Content-Type': 'application/json', // Adjust the content type as needed
+    };
+
+    final response = await http.post(
+      Uri.parse('http://192.168.8.102:5050/transaction/deductBusFare'),
+      headers: headers,
+      body: jsonEncode({
+        'userID': "652939bd9215d4fb137705b1",
+        'amount': 100.00,
+      }),
+    );
+  }
+
+
   @override
   Widget build(BuildContext context) {
+
+    logger.e(conductor_Object);
     return Scaffold(
         appBar: AppBar(
-          // leading: Container(
-          //   padding: const EdgeInsets.only(left: 10),
-          //   child: const CircleAvatar(
-          //     backgroundImage: AssetImage(
-          //         'assets/user_image.png' // Replace with your image path
-          //         ),
-          //   ),
-          // ),
           backgroundColor: Colors.blue,
           title: const Text('Bus Deduct'),
-
           elevation: 1,
         ),
         body: Container(
@@ -50,7 +121,7 @@ class _UserWalletState extends State<BusDeduct> {
                       children: [
                         Expanded(
                           child: Text(
-                            'Name:',
+                            'Name:' ,
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
@@ -60,7 +131,7 @@ class _UserWalletState extends State<BusDeduct> {
                         ),
                         Expanded(
                           child: Text(
-                            'John Doe',
+                            'Bathiya Max',
                             style: TextStyle(
                               fontSize: 24,
                             ),
@@ -85,7 +156,7 @@ class _UserWalletState extends State<BusDeduct> {
                         ),
                         Expanded(
                           child: Text(
-                            '\$100.00',
+                            '\$21000109.00',
                             style: TextStyle(
                               fontSize: 24,
                             ),
@@ -110,7 +181,7 @@ class _UserWalletState extends State<BusDeduct> {
                         ),
                         Expanded(
                           child: Text(
-                            '1234',
+                            'ND-8759',
                             style: TextStyle(
                               fontSize: 24,
                             ),
@@ -135,7 +206,7 @@ class _UserWalletState extends State<BusDeduct> {
                         ),
                         Expanded(
                           child: Text(
-                            '50',
+                            '54',
                             style: TextStyle(
                               fontSize: 24,
                             ),
@@ -182,7 +253,7 @@ class _UserWalletState extends State<BusDeduct> {
                         ),
                         Expanded(
                           child: Text(
-                            '\$20.00',
+                            '\$1000.00',
                             style: TextStyle(
                               fontSize: 24,
                               color: Colors.red,
@@ -198,7 +269,9 @@ class _UserWalletState extends State<BusDeduct> {
                 height: 80,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  placeTicket();
+                },
                 child: const Text(
                   'Deduct',
                   style: TextStyle(fontSize: 24),

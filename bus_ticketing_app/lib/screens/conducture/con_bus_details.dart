@@ -34,7 +34,7 @@ class _BusDetailsState extends State<BusDetails> {
 
     // Make an HTTP POST request to the login API
     final response = await http.post(
-      Uri.parse('http://192.168.8.103:5050/bus/getDetailsConId'),
+      Uri.parse('http://192.168.8.101:5050/bus/getDetailsConId'),
       headers: headers,
       body: jsonEncode({
         'conductId': user_ID_Conduct,

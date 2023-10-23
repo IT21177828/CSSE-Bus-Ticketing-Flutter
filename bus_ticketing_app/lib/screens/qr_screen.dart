@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bus_ticketing_app/utils/utills.dart';
 import 'package:flutter/material.dart';
 import 'package:bus_ticketing_app/widgets/qr_image.dart';
@@ -28,34 +30,43 @@ class GenerateQRCodeState extends State<QRScreen> {
   GenerateQRCodeState(this.user_Qr, this.NewUser);
 
   TextEditingController controller = TextEditingController();
+  int balance=0;
 
-  @override
+   @override
   void initState() {
     NewUser = widget.newUser;
 
-    String balance = NewUser.accountBalance.toString();
-
     super.initState();
     fetchData();
+    
+    // Refresh data every 5 seconds
+    Timer.periodic(Duration(seconds: 5), (Timer timer) {
+      fetchData();
+    });
   }
 
   Future<void> fetchData() async {
     final String user = user_Qr;
+    final String userId = NewUser.userID; // Use the actual user ID
 
     final Map<String, String> headers = {
-      'Content-Type': 'application/json', // Adjust the content type as needed
+      'Content-Type': 'application/json',
     };
 
-    print("User ID: $user_Qr");
+    print("User ID: $userId");
 
     final response = await http.post(
-      Uri.parse('http://192.168.8.100:5050/users/userData/'),
+      Uri.parse('http://192.168.8.101:5050/users/userData/'),
       headers: headers,
       body: jsonEncode({
-        "_id": "652937a69604eb52db13a375",
-      }),
+        "_id": userId, // Use the actual user ID
+      })
     );
-    final decodeData = json.decode(response.body);
+
+    setState(() {
+      final decodeData = json.decode(response.body);
+      balance = decodeData['balance'] ?? 0;
+    });
   }
 
   Widget build(BuildContext context) {

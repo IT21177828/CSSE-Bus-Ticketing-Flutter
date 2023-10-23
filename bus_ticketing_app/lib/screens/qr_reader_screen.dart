@@ -58,8 +58,8 @@ class _BarcodeScannerAppState extends State<BarcodeScannerApp> {
 
     String userID = NewUser.userID;
 
-    String UID = userID;
-    double price = 100.00;
+    String UID = "65294c9863497cad3070edd9";
+    double price = 1000.00;
 
     final Map<String, String> headers = {
       'Content-Type': 'application/json', // Adjust the content type as needed
@@ -131,15 +131,15 @@ class _BarcodeScannerAppState extends State<BarcodeScannerApp> {
               SizedBox(
                 height: 40,
               ),
-              if (_scanBarcode != null &&
-                  _scanBarcode != "No data yet" &&
-                  _scanBarcode != "-1")
+              // if (_scanBarcode != null &&
+              //     _scanBarcode != "No data yet" &&
+              //     _scanBarcode != "-1")
                 ElevatedButton(
                     onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => BusDeduct(),
+                          builder: (context) => BusDeduct(qrCode: _scanBarcode, conductor_Object: NewUser),
                         ),
                       );
                     },
